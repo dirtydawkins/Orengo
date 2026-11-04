@@ -10,6 +10,7 @@ Checked on 5 November 2026 against the production static export.
 - Cards: each of the six cards toggled from front to back and back to front on click. Enter and Space were checked on the automation card. The 3D back face remained readable; carousel controls advanced to the next card. No automatic flips are used.
 - Navigation: capsule measured 70px at page top and 60px after compaction. Sustained downward scrolling hid it; upward scrolling revealed it. The active indicator moved to Skills. Mobile dialog opened beneath the capsule, locked page scrolling, focused its close control, and restored focus and `aria-expanded=false` on Escape.
 - Theme: light/dark switching and persistence after reload were checked. The portrait has no theme-dependent filter.
+- Default theme: exported HTML starts in light mode. The actual head bootstrap was executed against first-visit, saved-light, saved-dark, invalid-storage and unavailable-storage cases; all selected the expected appearance and metadata color.
 - Gallery: next/previous state, fullscreen dialog, ArrowRight and Escape were checked.
 - Browser logs: no warnings or errors recorded in the isolated QA tab.
 

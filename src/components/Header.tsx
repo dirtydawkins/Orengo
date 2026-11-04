@@ -18,7 +18,7 @@ const mobileLinks = [
 
 export function Header() {
   const pathname = usePathname();
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("light");
   const [active, setActive] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [motion, setMotion] = useState({ compact: false, hidden: false });
@@ -30,7 +30,7 @@ export function Header() {
   const trigger = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    setTheme(document.documentElement.dataset.theme || "dark");
+    setTheme(document.documentElement.dataset.theme || "light");
     setActive(
       pathname.startsWith("/services/")
         ? "services"

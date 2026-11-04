@@ -21,7 +21,7 @@ export const metadata: Metadata = {
       "Websites and systems built to work. Nairobi, Kenya. Working worldwide.",
     images: [
       {
-        url: "/opengraph-image",
+        url: "/opengraph-image.png",
         width: 1200,
         height: 630,
         alt: "Lameck Orengo, full-stack developer in Nairobi",
@@ -31,16 +31,16 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
 };
-const themeBoot = `(()=>{let t='dark';try{const saved=localStorage.getItem('lameck-theme');t=saved==='light'||saved==='dark'?saved:matchMedia('(prefers-color-scheme:light)').matches?'light':'dark'}catch{}document.documentElement.dataset.theme=t;document.querySelector('meta[name="theme-color"]')?.setAttribute('content',t==='light'?'#F2EEE6':'#0B0D10')})()`;
+const themeBoot = `(()=>{let t='light';try{const saved=localStorage.getItem('lameck-theme');t=saved==='light'||saved==='dark'?saved:'light'}catch{}document.documentElement.dataset.theme=t;document.querySelector('meta[name="theme-color"]')?.setAttribute('content',t==='light'?'#F2EEE6':'#0B0D10')})()`;
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme="dark" suppressHydrationWarning>
+    <html lang="en" data-theme="light" suppressHydrationWarning>
       <head>
-        <meta name="theme-color" content="#0B0D10" />
+        <meta name="theme-color" content="#F2EEE6" />
         <script dangerouslySetInnerHTML={{ __html: themeBoot }} />
         <link
           rel="preload"

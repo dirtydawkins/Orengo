@@ -26,13 +26,14 @@ Import `dirtydawkins/Orengo`, select the Next.js preset, and name the project `l
 - Portrait: `public/images/lameck-orengo.jpg`. Keep the original natural colors; update dimensions if the source changes.
 - CV: `public/assets/Lameck_Orengo_CV_updated.pdf`.
 - Real project screenshots: `public/projects/`. The current gallery contains captures of the live LOCKD website. Do not replace these with invented mockups.
+- Social preview: `src/app/opengraph-image.png`. Its original typography artwork is defined in `scripts/generate-social.mjs`; run `npm run generate:social` after editing that source, then build.
 - Design tokens, spacing and responsive rules: `src/app/globals.css`.
 - Service pages use `src/app/services/[slug]/page.tsx`; add a data entry to generate another page.
 - The reusable case study component is `src/components/CaseStudy.tsx`. Project notes distinguish the deployed public interface from unverified business outcomes.
 
 ## Theme and interactions
 
-Theme initialization runs in the document head, follows the system preference on first visit and then respects `localStorage['lameck-theme']`. The header control updates the selection and theme metadata. The portrait has no color filters. Both themes share the layout and use separate readable neutral and accent colors.
+Theme initialization runs in the document head. Light mode is the first-visit default, including when storage is unavailable. An explicit saved choice in `localStorage['lameck-theme']` takes precedence on later visits. The header control updates the selection and theme metadata. The portrait has no color filters. Both themes share the layout and use separate readable neutral and accent colors.
 
 Services, process steps, experience and the dedicated Skills & Technologies index use native disclosures. Six illustrated engineering cards have original SVG artwork, ivory fronts, dark explanatory backs, and a 640ms CSS 3D flip. Each card flips on click, tap, Enter or Space. Desktop uses a subtly overlapping spread; mobile uses native horizontal scrolling, scroll snapping and previous/next controls. Reduced motion shows the selected face instantly.
 
