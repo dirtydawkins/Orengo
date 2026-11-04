@@ -11,18 +11,22 @@
   max-width: calc(100% - 40px);
   height: 70px;
   padding: 8px 10px;
-  border: 1px solid #393b3f;
+  border: 1px solid #385783;
   border-radius: 999px;
-  background: #0b0d10;
+  background: #102a56;
   color: #f2eee6;
   box-shadow:
-    0 8px 26px #00000026,
+    inset 0 1px 0 #ffffff0f,
+    0 8px 26px #07172e26,
     0 2px 4px #00000020;
   transition:
     height 0.3s var(--ease),
     padding 0.3s var(--ease),
     transform 0.3s var(--ease);
   isolation: isolate;
+}
+.capsule-identity {
+  display: none;
 }
 .capsule.is-compact {
   height: 60px;
@@ -35,7 +39,7 @@
   height: 48px;
   width: 48px;
   flex: none;
-  border: 1px solid #686359;
+  border: 1px solid #6882a6;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -52,7 +56,7 @@
   font-size: 15px;
   align-self: center;
   translate: -1px 3px;
-  color: #c8ad82;
+  color: #b9d3ff;
 }
 .is-compact .lo-monogram {
   height: 42px;
@@ -71,10 +75,10 @@
   border-radius: 999px;
   font-size: 12px;
   transition: background 0.18s;
-  color: #e6e2da;
+  color: #f2eee6;
 }
 .capsule-links > a:hover {
-  background: #ffffff0c;
+  background: #214477;
 }
 .active-pill {
   position: absolute;
@@ -82,7 +86,7 @@
   bottom: 0;
   left: 0;
   border-radius: 999px;
-  background: #2a2d32;
+  background: #284b7a;
   opacity: 0;
   transition:
     transform 0.26s var(--ease),
@@ -92,7 +96,7 @@
 }
 .capsule-cta {
   background: #f2eee6;
-  color: #171a1f;
+  color: #102a56;
   min-height: 46px;
   display: flex;
   align-items: center;
@@ -105,7 +109,7 @@
   transition: background 0.18s;
 }
 .capsule-cta:hover {
-  background: #e3d7c5;
+  background: #dce8fa;
 }
 .capsule-cta > span {
   font-size: 17px;
@@ -149,9 +153,9 @@
   width: min(450px, calc(100vw - 32px));
   max-height: calc(100svh - 130px);
   padding: 18px 25px 25px;
-  border: 1px solid #3e4146;
+  border: 1px solid #385783;
   border-radius: 20px;
-  background: #111419;
+  background: #102444;
   color: #f2eee6;
   box-shadow: 0 18px 60px #0005;
   overscroll-behavior: contain;
@@ -163,11 +167,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #34383e;
+  border-bottom: 1px solid #385071;
   padding-bottom: 9px;
 }
 .capsule-menu-top .mono {
-  color: #c8ad82;
+  color: #b9d3ff;
   font-size: 9px;
 }
 .capsule-menu nav a {
@@ -177,16 +181,16 @@
   font-size: 23px;
   letter-spacing: -0.04em;
   padding: 11px 0;
-  border-bottom: 1px solid #34383e;
+  border-bottom: 1px solid #385071;
 }
 .capsule-menu nav a > .mono {
-  color: #a7a9af;
+  color: #b4c2d6;
   font-size: 8px;
 }
 .capsule-menu nav a > span:last-child {
   margin-left: auto;
   font-size: 15px;
-  color: #c8ad82;
+  color: #b9d3ff;
 }
 .menu-appearance {
   display: flex;
@@ -200,12 +204,12 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #a7a9af;
+  color: #b4c2d6;
 }
 .menu-whatsapp {
   display: block;
   padding-top: 12px;
-  border-top: 1px solid #34383e;
+  border-top: 1px solid #385071;
   font-size: 12px;
   color: #f2eee6;
 }
@@ -257,6 +261,13 @@
   .capsule-links,
   .capsule-theme {
     display: none;
+  }
+  .capsule-identity {
+    display: block;
+    flex: 1;
+    font-size: 12px;
+    letter-spacing: -0.02em;
+    color: #f2eee6;
   }
   .capsule-cta {
     min-height: 44px;

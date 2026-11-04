@@ -38,6 +38,18 @@ export function ContactActions({
     </div>
   );
 }
+export function SocialLinks({ className = "" }: { className?: string }) {
+  return (
+    <nav className={`social-links ${className}`} aria-label="Social profiles">
+      <a href={site.github} target="_blank" rel="noopener noreferrer">
+        GitHub <span aria-hidden="true">↗</span>
+      </a>
+      <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
+        LinkedIn <span aria-hidden="true">↗</span>
+      </a>
+    </nav>
+  );
+}
 export function Footer() {
   return (
     <footer className="footer shell">
@@ -45,6 +57,7 @@ export function Footer() {
         Lameck Orengo.
       </Link>
       <p>Nairobi, Kenya · Working worldwide</p>
+      <SocialLinks className="footer-socials" />
       <a href="#top">Back to top ↑</a>
       <span className="mono">© {new Date().getFullYear()}</span>
     </footer>

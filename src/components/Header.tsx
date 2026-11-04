@@ -21,6 +21,7 @@ export function Header() {
   const [theme, setTheme] = useState("light");
   const [active, setActive] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showContact, setShowContact] = useState(pathname !== "/");
   const [motion, setMotion] = useState({ compact: false, hidden: false });
   const flags = useRef({ compact: false, hidden: false });
   const header = useRef<HTMLElement>(null);
@@ -28,6 +29,23 @@ export function Header() {
   const pill = useRef<HTMLSpanElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const hero = document.getElementById("home");
+    if (!hero) {
+      setShowContact(true);
+      return;
+    }
+    const update = () =>
+      setShowContact(hero.getBoundingClientRect().bottom <= 96);
+    update();
+    const observer = new IntersectionObserver(update, {
+      rootMargin: "-96px 0px 0px 0px",
+      threshold: 0,
+    });
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, [pathname]);
 
   useEffect(() => {
     setTheme(document.documentElement.dataset.theme || "light");
@@ -64,7 +82,7 @@ export function Header() {
     measure();
     window.addEventListener("resize", measure, { passive: true });
     return () => window.removeEventListener("resize", measure);
-  }, [active, pathname]);
+  }, [active, pathname, showContact]);
 
   useEffect(() => {
     let last = window.scrollY,
@@ -166,6 +184,9 @@ export function Header() {
         >
           L<span>O</span>
         </Link>
+        {!showContact ? (
+          <span className="capsule-identity">Lameck Orengo</span>
+        ) : null}
         <nav ref={nav} className="capsule-links" aria-label="Main navigation">
           <span className="active-pill" ref={pill} aria-hidden="true" />
           {links.map(([label, id]) => (
@@ -185,14 +206,17 @@ export function Header() {
         >
           {themeIcon}
         </button>
-        <a
-          className="capsule-cta"
-          href={site.whatsapp}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Let’s talk <span aria-hidden="true">↗</span>
-        </a>
+        {showContact ? (
+          <a
+            className="capsule-cta"
+            href={site.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Contact Lameck on WhatsApp (opens in a new tab)"
+          >
+            Contact <span aria-hidden="true">↗</span>
+          </a>
+        ) : null}
         <button
           ref={trigger}
           className="capsule-menu-toggle"

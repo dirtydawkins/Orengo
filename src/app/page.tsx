@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ContactActions, SectionLabel } from "@/components/Shared";
+import { ContactActions, SectionLabel, SocialLinks } from "@/components/Shared";
 import { EngineeringDeck } from "@/components/EngineeringDeck";
 import { ProjectGallery } from "@/components/ProjectGallery";
 import {
@@ -24,7 +24,7 @@ export default function Home() {
               <span>systems built</span>
             </span>
             <span className="hero-line">
-              <span>
+              <span className="accent-text">
                 to work<span className="period">.</span>
               </span>
             </span>
@@ -89,7 +89,8 @@ export default function Home() {
               <h2 id="services-title">
                 What I can
                 <br />
-                build for you<span className="period">.</span>
+                <span className="adaptive-ink">build for you</span>
+                <span className="period">.</span>
               </h2>
             </div>
             <p>
@@ -198,7 +199,7 @@ export default function Home() {
             <h2 id="work-title">
               Built, and out
               <br />
-              in the world.
+              <span className="adaptive-ink">in the world.</span>
             </h2>
           </div>
           <p>A closer look at one live project.</p>
@@ -381,7 +382,7 @@ export default function Home() {
           <h2 id="about-title">
             I like the part
             <br />
-            where it clicks.
+            <span className="adaptive-ink">where it clicks.</span>
           </h2>
           <p>
             I work on websites and applications that help businesses manage
@@ -391,6 +392,7 @@ export default function Home() {
             I enjoy the parts that need careful thinking: database design,
             application logic, performance, and making software easier to use.
           </p>
+          <SocialLinks className="about-socials" />
           <div className="education">
             <span className="mono">2019–2022 / Education</span>
             <h3>BSc in Data Science and Analytics</h3>
@@ -417,7 +419,8 @@ export default function Home() {
           <h2 id="contact-title">
             Have something
             <br />
-            that needs building<span className="period">?</span>
+            that <span className="adaptive-ink">needs building</span>
+            <span className="period">?</span>
           </h2>
           <div className="contact-layout">
             <p>
@@ -434,14 +437,7 @@ export default function Home() {
             </div>
           </div>
           <div className="contact-bottom">
-            <div>
-              <a href={site.github} target="_blank" rel="noopener noreferrer">
-                GitHub ↗
-              </a>
-              <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
-                LinkedIn ↗
-              </a>
-            </div>
+            <SocialLinks />
             <a
               className="under-link"
               href={site.cv}

@@ -14,6 +14,15 @@ Checked on 5 November 2026 against the production static export.
 - Gallery: next/previous state, fullscreen dialog, ArrowRight and Escape were checked.
 - Browser logs: no warnings or errors recorded in the isolated QA tab.
 
+## Navigation and typography refinement
+
+- Rebuilt the production export successfully; TypeScript and all 331 internal reference checks passed.
+- Checked the sapphire capsule and single hero contact action in light and dark at 390px. The shortcut was absent at the top, appeared when the hero bottom passed 96px, and was removed on returning to the top. A service page retained the shortcut.
+- Read the actual computed scroll-linked heading color before and after scrolling: the service phrase changed from `rgb(81, 89, 103)` near entry to sapphire `rgb(36, 89, 199)` in the reading area. About used the appropriate light/dark accent with unchanged text.
+- Checked 320, 390, 768 and 1440px layouts for document overflow. No overflow occurred; social links retain 44px touch targets.
+- GitHub and LinkedIn destinations, separate-tab behavior and safe link attributes were checked in About and the shared inner-page footer. The existing Contact links use the same shared component.
+- Mobile navigation, Escape close, theme switching and keyboard activation of the desktop theme button remained functional. No browser warnings or errors were recorded.
+
 ## Limits
 
 These were desktop browser tests at responsive widths, not tests on physical Android or iOS hardware. Reduced-motion CSS and motion checks are implemented and were reviewed in source; OS preference emulation was not available through the browser controls used. No Lighthouse scores or Core Web Vitals measurements are claimed. WhatsApp enquiry destinations were inspected without sending messages. LOCKD screenshots show its real public interface; completed payments, bookings, usage and revenue are not asserted.
