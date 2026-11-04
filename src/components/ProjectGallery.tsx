@@ -17,6 +17,7 @@ export function ProjectGallery() {
   }
   const image = (
     <img
+      key={item.src}
       src={item.src}
       alt={item.alt}
       width={1440}

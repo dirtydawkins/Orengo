@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ContactActions } from "@/components/Shared";
-import { process, services } from "@/data/portfolio";
+import { processStages, services } from "@/data/portfolio";
 export function generateStaticParams() {
   return services.map(({ slug }) => ({ slug }));
 }
@@ -64,14 +64,16 @@ export default async function ServicePage({
             implementation.
           </p>
           <div className="process-index">
-            {process.map(([title, body], i) => (
-              <details key={title}>
+            {processStages.map((stage, i) => (
+              <details key={stage.title}>
                 <summary>
                   <span className="mono">0{i + 1}</span>
-                  <h3>{title}</h3>
+                  <h3>{stage.title}</h3>
                   <span className="expand-mark">+</span>
                 </summary>
-                <p>{body}</p>
+                <p>
+                  {stage.summary} {stage.detail}
+                </p>
               </details>
             ))}
           </div>

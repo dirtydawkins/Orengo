@@ -31,6 +31,10 @@ export function CaseStudy() {
           <p className="mono">Role</p>
           <p>Developer</p>
           <p className="mono" style={{ marginTop: 28 }}>
+            Public front end
+          </p>
+          <p>{project.technologies.join(" · ")}</p>
+          <p className="mono" style={{ marginTop: 28 }}>
             Scope of these notes
           </p>
           <p>
@@ -82,11 +86,33 @@ export function CaseStudy() {
             wider work, including booking constraints and payment events.
           </p>
           <h2>Current status</h2>
-          <p className="case-status">
-            The public interface is deployed at lockd2.vercel.app. Screenshots
-            in this gallery were captured from that live site. A live interface
-            does not by itself verify completed bookings, payment processing,
-            customer activity, or revenue; those claims are not made here.
+          <dl className="case-evidence">
+            <div>
+              <dt>Deployed</dt>
+              <dd>
+                The public rental discovery interface at lockd2.vercel.app.
+              </dd>
+            </div>
+            <div>
+              <dt>Reviewed here</dt>
+              <dd>
+                Genuine screenshots, navigation, category organisation, and the
+                public discovery experience.
+              </dd>
+            </div>
+            <div>
+              <dt>Not verified</dt>
+              <dd>
+                Completed reservations, private administration, payment
+                processing, customer activity, and revenue.
+              </dd>
+            </div>
+          </dl>
+          <h2>What the interface makes clear</h2>
+          <p>
+            Different rental categories need a clear starting point, while
+            location and listing details need enough space to answer the next
+            question. These are the design decisions this showcase documents.
           </p>
           <h2>Building something with similar requirements?</h2>
           <ContactActions message="Hi Lameck, I saw LOCKD in your portfolio and would like to discuss a web application." />

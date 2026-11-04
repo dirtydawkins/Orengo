@@ -2,11 +2,13 @@
   "name": "lamecorengo-portfolio",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --hostname 127.0.0.1 --port 3000",
     "build": "next build",
     "start": "node scripts/serve.mjs",
     "typecheck": "next typegen && tsc --noEmit",
+    "test": "node --experimental-strip-types --test tests/enquiry.test.mjs tests/theme.test.mjs",
     "check": "node scripts/check-export.mjs",
     "generate:social": "node scripts/generate-social.mjs"
   },

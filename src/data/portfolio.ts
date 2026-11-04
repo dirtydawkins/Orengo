@@ -158,22 +158,49 @@ export const engineering = [
     note: "Make the release repeatable, and leave a way to understand failures.",
   },
 ] as const;
-export const process = [
-  [
-    "Understand",
-    "Start with the problem and how your business currently operates.",
-  ],
-  [
-    "Plan",
-    "Work out requirements, data, integrations, and the constraints that matter.",
-  ],
-  ["Build", "Develop the interface and the application underneath it."],
-  ["Test", "Check the important workflows, failure states, and edge cases."],
-  [
-    "Deploy",
-    "Prepare the application for production and verify the deployment.",
-  ],
-  ["Improve", "Make practical improvements based on feedback."],
+export const processStages = [
+  {
+    title: "Understand",
+    summary: "Start with the problem and how your business works.",
+    detail:
+      "Talk through who will use the product, what happens today, and where work gets stuck. Agree on the problem before choosing a solution.",
+  },
+  {
+    title: "Plan",
+    summary: "Define requirements, data, integrations, and constraints.",
+    detail:
+      "Map the essential workflows, external services, access rules, and practical limits. Use these to agree on a manageable scope.",
+  },
+  {
+    title: "Design",
+    summary: "Work out the interface and the important user journeys.",
+    detail:
+      "Organise the information and key screens around real tasks. Consider mobile layouts, empty states, and recovery when something goes wrong.",
+  },
+  {
+    title: "Build",
+    summary: "Connect the frontend, backend, database, and integrations.",
+    detail:
+      "Build the agreed workflows in useful increments. Keep access checks and data rules close to the operations they protect.",
+  },
+  {
+    title: "Test",
+    summary: "Check the workflows, edge cases, accessibility, and behavior.",
+    detail:
+      "Verify successful and failed requests, input validation, keyboard access, and responsive layouts. Check critical integrations before release.",
+  },
+  {
+    title: "Deploy",
+    summary: "Prepare for production and verify the release.",
+    detail:
+      "Build the production version, check configuration and assets, and confirm the deployed routes and important workflows actually work.",
+  },
+  {
+    title: "Improve",
+    summary: "Refine the software using real feedback.",
+    detail:
+      "Review what people find difficult and what the application needs next. Prioritise practical fixes and improvements over unnecessary features.",
+  },
 ] as const;
 export const stack = [
   [
@@ -210,6 +237,7 @@ export const stack = [
 export const project = {
   title: "LOCKD",
   url: "https://lockd2.vercel.app/",
+  technologies: ["HTML", "CSS", "JavaScript"],
   description:
     "A Kenya-first rental marketplace for stays, vehicles, gaming, gadgets, and experiences.",
   images: [

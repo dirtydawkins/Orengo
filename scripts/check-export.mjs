@@ -10,6 +10,10 @@ const services=['business-websites','booking-systems','payment-integrations','we
 for(const slug of services)assert.ok(files.includes(path.join(root,'services',slug,'index.html')),`Missing service ${slug}`);
 assert.ok(files.includes(path.join(root,'work','lockd','index.html')));
 const home=await readFile(path.join(root,'index.html'),'utf8');assert.ok(home.includes('https://lamecorengo.vercel.app'));assert.ok(home.includes('id="skills"'));assert.equal((home.match(/class="playing-card /g)||[]).length,6);
+assert.ok(home.includes('id="project-enquiry"'));
+assert.equal((home.match(/class="timeline-stage /g)||[]).length,7);
+assert.equal((home.match(/name="project-type"/g)||[]).length,8);
+assert.equal((home.match(/name="project-stage"/g)||[]).length,4);
 const pdf=await readFile(path.join(root,'assets','Lameck_Orengo_CV_updated.pdf'));assert.equal(pdf.subarray(0,5).toString(),'%PDF-');
 for(const image of ['images/lameck-orengo.jpg','projects/lockd-home.jpg','projects/lockd-categories.jpg']){const bytes=await readFile(path.join(root,image));assert.equal(bytes[0],255);assert.equal(bytes[1],216)}
-console.log(`PASS: ${htmlFiles.length} HTML pages, ${references} internal references, seven service routes, six cards, portrait, real screenshots and CV.`);
+console.log(`PASS: ${htmlFiles.length} HTML pages, ${references} internal references, seven service routes, six cards, seven timeline stages, enquiry choices, portrait, real screenshots and CV.`);

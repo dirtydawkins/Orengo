@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
 };
-const themeBoot = `(()=>{let t='light';try{const saved=localStorage.getItem('lameck-theme');t=saved==='light'||saved==='dark'?saved:'light'}catch{}document.documentElement.dataset.theme=t;document.querySelector('meta[name="theme-color"]')?.setAttribute('content',t==='light'?'#F2EEE6':'#0B0D10')})()`;
+const themeBoot = `(()=>{let t='light';try{const saved=localStorage.getItem('lameck-theme');t=saved==='system'?(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):saved==='dark'?'dark':'light'}catch{}document.documentElement.dataset.theme=t;document.querySelector('meta[name="theme-color"]')?.setAttribute('content',t==='light'?'#F2EEE6':'#0B0D10')})()`;
 export default function RootLayout({
   children,
 }: {

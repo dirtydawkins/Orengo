@@ -3,14 +3,11 @@ import Link from "next/link";
 import { ContactActions, SectionLabel, SocialLinks } from "@/components/Shared";
 import { EngineeringDeck } from "@/components/EngineeringDeck";
 import { ProjectGallery } from "@/components/ProjectGallery";
-import {
-  process,
-  project,
-  services,
-  site,
-  stack,
-  whatsapp,
-} from "@/data/portfolio";
+import { EngineeringTimeline } from "@/components/EngineeringTimeline";
+import { ProjectConfigurator } from "@/components/ProjectConfigurator";
+import { BeforeAfter } from "@/components/BeforeAfter";
+import { comparisons } from "@/data/comparisons";
+import { project, services, site, stack, whatsapp } from "@/data/portfolio";
 export default function Home() {
   return (
     <main id="main">
@@ -213,6 +210,9 @@ export default function Home() {
             <h3>
               LOCKD<span className="period">.</span>
             </h3>
+            <p className="mono project-stack">
+              {project.technologies.join(" / ")}
+            </p>
           </div>
           <div>
             <p>{project.description}</p>
@@ -235,6 +235,9 @@ export default function Home() {
             </div>
           </div>
         </div>
+        {comparisons.map((comparison) => (
+          <BeforeAfter key={comparison.id} comparison={comparison} />
+        ))}
       </section>
       <section
         className="section engineering"
@@ -255,29 +258,20 @@ export default function Home() {
           <EngineeringDeck />
         </div>
       </section>
-      <section className="paper section" aria-labelledby="process-title">
+      <section
+        className="paper section"
+        id="process"
+        aria-labelledby="process-title"
+      >
         <div className="shell split-section">
-          <div>
+          <div className="timeline-intro">
             <SectionLabel number="05">The process</SectionLabel>
             <h2 id="process-title">How I work.</h2>
             <p className="section-copy">
-              A considered process, with room
-              <br />
-              for the realities of your business.
+              From the first conversation to a working product.
             </p>
           </div>
-          <div className="process-index">
-            {process.map(([title, body], i) => (
-              <details key={title} open={i === 0}>
-                <summary>
-                  <span className="mono">0{i + 1}</span>
-                  <h3>{title}</h3>
-                  <span className="expand-mark">+</span>
-                </summary>
-                <p>{body}</p>
-              </details>
-            ))}
-          </div>
+          <EngineeringTimeline />
         </div>
       </section>
       <section
@@ -410,12 +404,30 @@ export default function Home() {
         </div>
       </section>
       <section
+        className="section enquiry-section"
+        id="project-enquiry"
+        aria-labelledby="enquiry-title"
+      >
+        <div className="shell enquiry-layout">
+          <div className="enquiry-intro">
+            <SectionLabel number="09">Your project</SectionLabel>
+            <h2 id="enquiry-title">
+              Tell me what
+              <br />
+              you need <span className="adaptive-ink">built.</span>
+            </h2>
+            <p>A few details help us start the conversation.</p>
+          </div>
+          <ProjectConfigurator />
+        </div>
+      </section>
+      <section
         className="contact-section section paper"
         id="contact"
         aria-labelledby="contact-title"
       >
         <div className="shell">
-          <SectionLabel number="09">Let’s talk</SectionLabel>
+          <SectionLabel number="10">Let’s talk</SectionLabel>
           <h2 id="contact-title">
             Have something
             <br />

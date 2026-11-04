@@ -23,6 +23,19 @@ Checked on 5 November 2026 against the production static export.
 - GitHub and LinkedIn destinations, separate-tab behavior and safe link attributes were checked in About and the shared inner-page footer. The existing Contact links use the same shared component.
 - Mobile navigation, Escape close, theme switching and keyboard activation of the desktop theme button remained functional. No browser warnings or errors were recorded.
 
+## Master-prompt additions
+
+- Production build and TypeScript: passed. The export check now covers seven timeline stages and the eight/four enquiry choices as well as all seven services, six cards, image assets, the CV and 368 internal references.
+- Automated checks: 12 passed. All 32 project-type/stage combinations generate complete drafts. Tests cover optional whitespace, a bounded description, CRLF handling, punctuation/non-ASCII text, URL encoding and invalid choices. Eight head-bootstrap cases cover light-first behavior, explicit light/dark, device preference in both modes, invalid storage and unavailable storage.
+- Browser enquiry checks: selected a booking system and an existing website, entered punctuation and line breaks, opened the draft preview, and confirmed the WhatsApp/email drafts matched exactly. Angle-bracket content stayed plain text. Native radio arrow keys changed selection. The mobile Something else/new system combination omitted empty optional details cleanly. No enquiry was sent.
+- Responsive checks: 320, 375, 390, 430, 768, 1024 and 1440px in both themes. No document overflow; choice labels fit and touch targets were at least 44px. Existing card backs remained within their frames.
+- Timeline: seven connected stages render, including Design. Enter and Space expanded/collapsed a stage; the current marker moved between stages as the reading area changed. Stage descriptions remain visible without expansion and all details use native disclosures.
+- Appearance: the optional device selection matched the browser's current dark device preference and persisted after reload. Manual light/dark choices still worked. Light remained the first-visit default even with a dark device preference in the bootstrap checks.
+- Mobile menu: opened beneath the capsule, locked background scrolling, displayed device controls, and restored focus, scrolling and `aria-expanded=false` after Escape. The hero still showed one primary WhatsApp action, with its original portrait loaded and no capsule contact duplicate at the top.
+- Regression: all six cards flipped and returned with Enter/Space; a card also flipped on click. The genuine project gallery advanced, opened its fullscreen viewer, responded to ArrowRight and closed with Escape. No browser warnings/errors were recorded.
+- LOCKD was opened directly in the browser. Its real public navigation, rental categories, linked CSS and JavaScript assets support the limited front-end description. No backend, payment or business-outcome claims were added.
+- Before/after: no genuine matched pair exists. The typed comparison component and native range interaction are ready in source, but no comparison is rendered publicly. Browser verification with real comparison assets remains outstanding.
+
 ## Limits
 
 These were desktop browser tests at responsive widths, not tests on physical Android or iOS hardware. Reduced-motion CSS and motion checks are implemented and were reviewed in source; OS preference emulation was not available through the browser controls used. No Lighthouse scores or Core Web Vitals measurements are claimed. WhatsApp enquiry destinations were inspected without sending messages. LOCKD screenshots show its real public interface; completed payments, bookings, usage and revenue are not asserted.

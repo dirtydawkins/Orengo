@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "./playing-cards.css";
 @import "./navigation.css";
+@import "./interactions.css";
 @font-face {
   font-family: Manrope;
   src: url("/fonts/manrope-latin-variable.woff2") format("woff2");
@@ -1262,12 +1263,12 @@ details[open] > summary > .expand-mark {
   }
   .footer p {
     margin: 0;
-    grid-row: 3;
+    grid-row: 4;
     font-size: 9px;
   }
   .footer .mono {
     grid-column: 2;
-    grid-row: 3;
+    grid-row: 4;
     text-align: right;
   }
   .footer > a:not(.brand) {

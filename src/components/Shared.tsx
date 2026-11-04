@@ -58,6 +58,11 @@ export function Footer() {
       </Link>
       <p>Nairobi, Kenya · Working worldwide</p>
       <SocialLinks className="footer-socials" />
+      <nav className="footer-navigation" aria-label="Footer navigation">
+        <Link href="/#services">Services</Link>
+        <Link href="/#work">Work</Link>
+        <Link href="/#about">About</Link>
+      </nav>
       <a href="#top">Back to top ↑</a>
       <span className="mono">© {new Date().getFullYear()}</span>
     </footer>

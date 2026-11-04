@@ -15,10 +15,20 @@ const mobileLinks = [
   ["Experience", "experience"],
   ["Contact", "contact"],
 ] as const;
+type ThemePreference = "light" | "dark" | "system";
+
+function applyDocumentTheme(theme: "light" | "dark") {
+  document.documentElement.dataset.theme = theme;
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute("content", theme === "light" ? "#F2EEE6" : "#0B0D10");
+}
 
 export function Header() {
   const pathname = usePathname();
   const [theme, setTheme] = useState("light");
+  const [themePreference, setThemePreference] =
+    useState<ThemePreference>("light");
   const [active, setActive] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [showContact, setShowContact] = useState(pathname !== "/");
@@ -29,6 +39,29 @@ export function Header() {
   const pill = useRef<HTMLSpanElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
+  const appearance = useRef<HTMLDetailsElement>(null);
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("lameck-theme");
+      setThemePreference(
+        saved === "dark" || saved === "system" ? saved : "light",
+      );
+    } catch {}
+  }, []);
+
+  useEffect(() => {
+    if (themePreference !== "system") return;
+    const query = matchMedia("(prefers-color-scheme: dark)");
+    const update = () => {
+      const next = query.matches ? "dark" : "light";
+      setTheme(next);
+      applyDocumentTheme(next);
+    };
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, [themePreference]);
 
   useEffect(() => {
     const hero = document.getElementById("home");
@@ -132,16 +165,26 @@ export function Header() {
     };
   }, [menuOpen]);
 
-  function toggle() {
-    const next = theme === "dark" ? "light" : "dark";
+  function chooseTheme(preference: ThemePreference) {
+    const next =
+      preference === "system"
+        ? matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light"
+        : preference;
+    setThemePreference(preference);
     setTheme(next);
-    document.documentElement.dataset.theme = next;
-    document
-      .querySelector('meta[name="theme-color"]')
-      ?.setAttribute("content", next === "light" ? "#F2EEE6" : "#0B0D10");
+    applyDocumentTheme(next);
     try {
-      localStorage.setItem("lameck-theme", next);
+      localStorage.setItem("lameck-theme", preference);
     } catch {}
+    if (appearance.current?.open) {
+      appearance.current.open = false;
+      appearance.current.querySelector("summary")?.focus();
+    }
+  }
+  function toggle() {
+    chooseTheme(theme === "dark" ? "light" : "dark");
   }
   function close() {
     dialog.current?.close();
@@ -199,13 +242,45 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <button
-          className="capsule-theme"
-          onClick={toggle}
-          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+        <details
+          ref={appearance}
+          className="capsule-appearance"
+          onKeyDown={(event) => {
+            if (event.key === "Escape" && appearance.current?.open) {
+              event.preventDefault();
+              appearance.current.open = false;
+              appearance.current.querySelector("summary")?.focus();
+            }
+          }}
+          onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget))
+              event.currentTarget.open = false;
+          }}
         >
-          {themeIcon}
-        </button>
+          <summary className="capsule-theme" aria-label="Change appearance">
+            {themeIcon}
+          </summary>
+          <div
+            className="appearance-options"
+            role="group"
+            aria-label="Appearance options"
+          >
+            {(["light", "dark", "system"] as const).map((preference) => (
+              <button
+                key={preference}
+                onClick={() => chooseTheme(preference)}
+                aria-pressed={themePreference === preference}
+              >
+                {preference === "system"
+                  ? "Use device setting"
+                  : `${preference === "light" ? "Light" : "Dark"} mode`}
+                <span aria-hidden="true">
+                  {themePreference === preference ? "✓" : ""}
+                </span>
+              </button>
+            ))}
+          </div>
+        </details>
         {showContact ? (
           <a
             className="capsule-cta"
@@ -266,6 +341,20 @@ export function Header() {
           <span>
             {theme === "dark" ? "Dark" : "Light"} {themeIcon}
           </span>
+        </button>
+        <button
+          className="menu-system-theme"
+          onClick={() =>
+            chooseTheme(
+              themePreference === "system"
+                ? (theme as "light" | "dark")
+                : "system",
+            )
+          }
+          aria-pressed={themePreference === "system"}
+        >
+          Use device appearance{" "}
+          <span>{themePreference === "system" ? "On" : "Off"}</span>
         </button>
         <a
           className="menu-whatsapp"
