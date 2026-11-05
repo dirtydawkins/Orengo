@@ -1,3 +1,5 @@
+import { Disclosure } from "@/components/Disclosure";
+import { LinkArrow } from "@/components/LinkArrow";
 import Image from "next/image";
 import Link from "next/link";
 import { ContactActions, SectionLabel, SocialLinks } from "@/components/Shared";
@@ -45,10 +47,16 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Let’s talk on WhatsApp <span aria-hidden="true">↗</span>
+              Let’s talk on WhatsApp{" "}
+              <span aria-hidden="true">
+                <LinkArrow />
+              </span>
             </a>
             <a className="under-link" href="#services">
-              Explore my services <span aria-hidden="true">↓</span>
+              Explore my services{" "}
+              <span aria-hidden="true">
+                <LinkArrow direction="down" />
+              </span>
             </a>
           </div>
         </div>
@@ -73,11 +81,16 @@ export default function Home() {
         </figure>
         <div className="hero-foot mono">
           <p>
-            Nairobi, Kenya <span>↗ Working worldwide</span>
+            Nairobi, Kenya{" "}
+            <span>
+              <LinkArrow /> Working worldwide
+            </span>
           </p>
           <a href="#services">
             A practical approach, from interface to infrastructure.{" "}
-            <span>↓</span>
+            <span>
+              <LinkArrow direction="down" />
+            </span>
           </a>
         </div>
       </section>
@@ -128,7 +141,7 @@ export default function Home() {
           </div>
           <div className="service-index">
             {services.map((s, i) => (
-              <details className="service-row" key={s.slug}>
+              <Disclosure className="service-row" key={s.slug}>
                 <summary>
                   <span className="row-number mono">0{i + 1}</span>
                   <h3>{s.title}</h3>
@@ -150,17 +163,19 @@ export default function Home() {
                       rel="noopener noreferrer"
                       href={whatsapp(s.message)}
                     >
-                      Discuss this project ↗
+                      <span>
+                        Discuss this project <LinkArrow />
+                      </span>
                     </a>
                     <Link
                       className="service-page-link"
                       href={`/services/${s.slug}/`}
                     >
-                      About this service →
+                      About this service <LinkArrow direction="right" />
                     </Link>
                   </div>
                 </div>
-              </details>
+              </Disclosure>
             ))}
           </div>
         </div>
@@ -204,14 +219,14 @@ export default function Home() {
               "A focused application designed around the actual workflow.",
             ],
           ].map(([problem, approach], i) => (
-            <details key={problem}>
+            <Disclosure key={problem}>
               <summary>
                 <span className="mono">0{i + 1}</span>
                 {problem}
                 <span className="expand-mark">+</span>
               </summary>
               <p>{approach}</p>
-            </details>
+            </Disclosure>
           ))}
         </div>
       </section>
@@ -279,7 +294,7 @@ export default function Home() {
               Websites, booking platforms, payment flows, and the application
               logic that keeps them connected.
             </p>
-            <details className="experience-details">
+            <Disclosure className="experience-details">
               <summary>
                 Read about the work <span className="expand-mark">+</span>
               </summary>
@@ -301,7 +316,7 @@ export default function Home() {
                   Sentry monitoring.
                 </li>
               </ul>
-            </details>
+            </Disclosure>
           </div>
         </div>
       </section>
@@ -324,7 +339,7 @@ export default function Home() {
           </div>
           <div className="stack-index">
             {stack.map(([title, tools, usage]) => (
-              <details key={title}>
+              <Disclosure key={title}>
                 <summary>
                   {title}
                   <span className="expand-mark">+</span>
@@ -344,7 +359,7 @@ export default function Home() {
                   ))}
                 </ul>
                 <p className="subtle">{usage}</p>
-              </details>
+              </Disclosure>
             ))}
           </div>
         </div>
@@ -384,7 +399,7 @@ export default function Home() {
             <span className="mono">2019–2022 / Education</span>
             <h3>BSc in Data Science and Analytics</h3>
             <p>Jomo Kenyatta University of Agriculture and Technology</p>
-            <details>
+            <Disclosure>
               <summary>
                 Academic foundations <span className="expand-mark">+</span>
               </summary>
@@ -392,7 +407,7 @@ export default function Home() {
                 Python and SQL data analysis; regression and classification
                 model evaluation.
               </p>
-            </details>
+            </Disclosure>
           </div>
         </div>
       </section>
@@ -448,7 +463,9 @@ export default function Home() {
               href={site.cv}
               download="Lameck_Orengo_CV_updated.pdf"
             >
-              Download CV ↓
+              <span>
+                Download CV <LinkArrow direction="down" />
+              </span>
             </a>
           </div>
         </div>

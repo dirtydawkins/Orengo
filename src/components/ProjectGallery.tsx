@@ -1,4 +1,6 @@
 "use client";
+import { LinkArrow } from "@/components/LinkArrow";
+
 import {
   useEffect,
   useRef,
@@ -97,7 +99,9 @@ export function ProjectGallery({
         target="_blank"
         rel="noopener noreferrer"
       >
-        Visit the live website ↗
+        <span>
+          Visit the live website <LinkArrow />
+        </span>
       </a>
     </div>
   );
@@ -188,7 +192,10 @@ export function ProjectGallery({
               />
             </picture>
             <span className="project-expand">
-              Full screen <span aria-hidden="true">↗</span>
+              Full screen{" "}
+              <span aria-hidden="true">
+                <LinkArrow />
+              </span>
             </span>
           </button>
         )}
@@ -204,14 +211,14 @@ export function ProjectGallery({
               onClick={() => next(-1)}
               aria-label="Previous project screenshot"
             >
-              ←
+              <LinkArrow direction="left" />
             </button>
             <button
               type="button"
               onClick={() => next(1)}
               aria-label="Next project screenshot"
             >
-              →
+              <LinkArrow direction="right" />
             </button>
           </div>
         ) : null}
@@ -285,14 +292,14 @@ export function ProjectGallery({
                     onClick={() => next(-1)}
                     aria-label="Previous fullscreen screenshot"
                   >
-                    ←
+                    <LinkArrow direction="left" />
                   </button>
                   <button
                     type="button"
                     onClick={() => next(1)}
                     aria-label="Next fullscreen screenshot"
                   >
-                    →
+                    <LinkArrow direction="right" />
                   </button>
                 </div>
               ) : null}

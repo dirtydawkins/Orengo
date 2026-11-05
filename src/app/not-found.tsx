@@ -1,3 +1,4 @@
+import { LinkArrow } from "@/components/LinkArrow";
 import Link from "next/link";
 export default function NotFound() {
   return (
@@ -6,7 +7,9 @@ export default function NotFound() {
       <h1>Nothing here yet.</h1>
       <p>The page you’re looking for may have moved.</p>
       <Link className="under-link" href="/">
-        Back to the portfolio →
+        <span>
+          Back to the portfolio <LinkArrow direction="right" />
+        </span>
       </Link>
     </main>
   );

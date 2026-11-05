@@ -1,4 +1,6 @@
 "use client";
+import { LinkArrow } from "@/components/LinkArrow";
+
 import { useEffect, useRef, useState } from "react";
 import { engineering } from "@/data/portfolio";
 import { CardArtwork } from "./PlayingCardArt";
@@ -172,14 +174,14 @@ export function EngineeringDeck() {
               onClick={() => browse(-1)}
               aria-label="Previous playing card"
             >
-              ←
+              <LinkArrow direction="left" />
             </button>
             <button
               disabled={active === 5}
               onClick={() => browse(1)}
               aria-label="Next playing card"
             >
-              →
+              <LinkArrow direction="right" />
             </button>
           </div>
         </div>

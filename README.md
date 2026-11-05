@@ -51,6 +51,12 @@ Contact uses WhatsApp, email and phone directly. Service messages are encoded wi
 
 The project enquiry builder provides eight project types, four starting stages, optional details, a draft preview, and matching WhatsApp/email drafts. It opens a draft; it does not send a message or quote a price. The seven-stage engineering timeline uses native disclosures and IntersectionObserver for reading emphasis. Its content is readable without scroll animations. The existing single-project LOCKD showcase, screenshot viewer, six card flips and direct contact actions remain available.
 
+## Arrow icons and dropdown motion
+
+`src/components/LinkArrow.tsx` uses Lucide's `ArrowUpRight` for external links and its directional SVG variants for navigation, gallery controls and downloads. Icons inherit `currentColor`, size with the surrounding text, and are hidden from screen readers. Existing arrow wrappers, link gaps and hover translations are retained. The export check rejects Unicode/emoji arrows, variation selectors and CSS-generated arrow glyphs.
+
+`src/components/Disclosure.tsx` keeps native `details`/`summary` semantics and enhances opening and closing with a measured height transition. The duration is `0.7s` in `globals.css`. Repeated activation reverses from the current height; completion restores automatic sizing. Keyboard activation uses the native summary click. Reduced motion is immediate, and native disclosures still work without JavaScript. The mobile menu has a matching short slide on opening.
+
 ## Project spotlight
 
 Selected Work follows the hero and precedes Services. Desktop uses an asymmetric information/preview composition; mobile puts the screenshot before the project details. LOCKD uses its original desktop screenshots at every viewport, scaled proportionally with the entire image visible. Project selection is enabled only when more than one verified project exists. The gallery is keyed by project identifier so a selection resets its screenshot state without transition timers. The single LOCKD entry uses its real website and existing case-study route.

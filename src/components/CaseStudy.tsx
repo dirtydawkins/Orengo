@@ -1,3 +1,4 @@
+import { LinkArrow } from "@/components/LinkArrow";
 import Link from "next/link";
 import { ProjectGallery } from "./ProjectGallery";
 import { ContactActions } from "./Shared";
@@ -10,7 +11,9 @@ export function CaseStudy({ project }: { project: PortfolioProject }) {
     <main id="main">
       <section className="detail-hero shell">
         <Link className="back-link" href="/#work">
-          ← Back to selected work
+          <span>
+            <LinkArrow direction="left" /> Back to selected work
+          </span>
         </Link>
         <p className="mono champagne">Project notes / {project.category}</p>
         <h1>
@@ -24,7 +27,9 @@ export function CaseStudy({ project }: { project: PortfolioProject }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Visit Live Website ↗
+          <span>
+            Visit Live Website <LinkArrow />
+          </span>
         </a>
       </section>
       <div className="shell case-gallery">

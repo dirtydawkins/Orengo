@@ -1,3 +1,5 @@
+import { Disclosure } from "@/components/Disclosure";
+import { LinkArrow } from "@/components/LinkArrow";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -31,7 +33,9 @@ export default async function ServicePage({
     <main id="main">
       <section className="detail-hero shell">
         <Link className="back-link" href="/#services">
-          ← Back to services
+          <span>
+            <LinkArrow direction="left" /> Back to services
+          </span>
         </Link>
         <p className="mono champagne">A service by Lameck Orengo</p>
         <h1>
@@ -65,7 +69,7 @@ export default async function ServicePage({
           </p>
           <div className="process-index">
             {processStages.map((stage, i) => (
-              <details key={stage.title}>
+              <Disclosure key={stage.title}>
                 <summary>
                   <span className="mono">0{i + 1}</span>
                   <h3>{stage.title}</h3>
@@ -74,7 +78,7 @@ export default async function ServicePage({
                 <p>
                   {stage.summary} {stage.detail}
                 </p>
-              </details>
+              </Disclosure>
             ))}
           </div>
           <h2>Tell me what you have in mind.</h2>

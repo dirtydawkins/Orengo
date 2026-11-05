@@ -1,3 +1,4 @@
+import { LinkArrow } from "@/components/LinkArrow";
 import Link from "next/link";
 import { site, whatsapp } from "@/data/portfolio";
 export function SectionLabel({
@@ -29,11 +30,18 @@ export function ContactActions({
         target="_blank"
         rel="noopener noreferrer"
       >
-        {label} <span aria-hidden="true">↗</span>
+        {label}{" "}
+        <span aria-hidden="true">
+          <LinkArrow />
+        </span>
       </a>
       <div className="contact-alternatives">
-        <a href={`mailto:${site.email}`}>Send an email ↗</a>
-        <a href="tel:+254705370435">Call me ↗</a>
+        <a href={`mailto:${site.email}`}>
+          Send an email <LinkArrow />
+        </a>
+        <a href="tel:+254705370435">
+          Call me <LinkArrow />
+        </a>
       </div>
     </div>
   );
@@ -42,10 +50,16 @@ export function SocialLinks({ className = "" }: { className?: string }) {
   return (
     <nav className={`social-links ${className}`} aria-label="Social profiles">
       <a href={site.github} target="_blank" rel="noopener noreferrer">
-        GitHub <span aria-hidden="true">↗</span>
+        GitHub{" "}
+        <span aria-hidden="true">
+          <LinkArrow />
+        </span>
       </a>
       <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
-        LinkedIn <span aria-hidden="true">↗</span>
+        LinkedIn{" "}
+        <span aria-hidden="true">
+          <LinkArrow />
+        </span>
       </a>
     </nav>
   );
@@ -63,7 +77,9 @@ export function Footer() {
         <Link href="/#work">Work</Link>
         <Link href="/#about">About</Link>
       </nav>
-      <a href="#top">Back to top ↑</a>
+      <a href="#top">
+        Back to top <LinkArrow direction="up" />
+      </a>
       <span className="mono">© {new Date().getFullYear()}</span>
     </footer>
   );

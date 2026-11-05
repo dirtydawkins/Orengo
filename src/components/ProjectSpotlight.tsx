@@ -1,4 +1,6 @@
 "use client";
+import { LinkArrow } from "@/components/LinkArrow";
+
 import Link from "next/link";
 import { useId, useState } from "react";
 import { ProjectGallery } from "./ProjectGallery";
@@ -22,7 +24,9 @@ export function ProjectSpotlight({
     return (
       <p className="subtle">
         Project previews are currently unavailable.{" "}
-        <Link href="/#contact">Get in touch ↗</Link>
+        <Link href="/#contact">
+          Get in touch <LinkArrow />
+        </Link>
       </p>
     );
   const multiple = available.length > 1;
@@ -48,7 +52,7 @@ export function ProjectSpotlight({
                 <small>{project.category}</small>
               </span>
               <span className="selector-mark" aria-hidden="true">
-                ↗
+                <LinkArrow />
               </span>
             </button>
           ))}
@@ -85,11 +89,17 @@ export function ProjectSpotlight({
               target="_blank"
               rel="noopener noreferrer"
             >
-              Visit Live Website <span aria-hidden="true">↗</span>
+              Visit Live Website{" "}
+              <span aria-hidden="true">
+                <LinkArrow />
+              </span>
             </a>
             {active.caseStudyUrl ? (
               <Link className="under-link" href={active.caseStudyUrl}>
-                View Case Study <span aria-hidden="true">↗</span>
+                View Case Study{" "}
+                <span aria-hidden="true">
+                  <LinkArrow />
+                </span>
               </Link>
             ) : null}
           </div>

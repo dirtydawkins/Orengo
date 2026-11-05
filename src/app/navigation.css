@@ -181,6 +181,17 @@
 .capsule-menu::backdrop {
   background: #0b0d1077;
 }
+.capsule-menu[open] {
+  animation: menu-slide 0.7s var(--ease);
+}
+@keyframes menu-slide {
+  from {
+    translate: 0 -10px;
+  }
+  to {
+    translate: 0 0;
+  }
+}
 .capsule-menu-top {
   position: sticky;
   top: -18px;

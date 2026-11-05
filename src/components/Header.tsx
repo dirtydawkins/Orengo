@@ -1,4 +1,6 @@
 "use client";
+import { LinkArrow } from "@/components/LinkArrow";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
@@ -278,7 +280,10 @@ export function Header() {
             rel="noopener noreferrer"
             aria-label="Contact Lameck on WhatsApp (opens in a new tab)"
           >
-            Contact <span aria-hidden="true">↗</span>
+            Contact{" "}
+            <span aria-hidden="true">
+              <LinkArrow />
+            </span>
           </a>
         ) : null}
         <button
@@ -342,7 +347,9 @@ export function Header() {
             <Link key={id} href={`/#${id}`} onClick={close}>
               <span className="mono">0{i + 1}</span>
               {label}
-              <span aria-hidden="true">↗</span>
+              <span aria-hidden="true">
+                <LinkArrow />
+              </span>
             </Link>
           ))}
         </nav>
@@ -376,7 +383,7 @@ export function Header() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Let’s talk on WhatsApp ↗
+          Let’s talk on WhatsApp <LinkArrow />
         </a>
       </dialog>
     </>

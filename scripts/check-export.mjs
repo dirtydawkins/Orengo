@@ -15,8 +15,36 @@ async function walk(dir) {
 const files = await walk(root),
   htmlFiles = files.filter((f) => f.endsWith(".html"));
 let references = 0;
+let svgArrows = 0;
+let disclosures = 0;
+const unicodeArrows =
+  /[\u2190-\u21ff\u2794-\u27bf\u2934-\u2935\u2b05-\u2b0d\ufe0e\ufe0f]/u;
 for (const file of htmlFiles) {
   const html = await readFile(file, "utf8");
+  assert.ok(
+    !unicodeArrows.test(html),
+    `Unicode/emoji arrow in ${path.relative(root, file)}`,
+  );
+  for (const disclosure of html.matchAll(/<details\b[^>]*>/g)) {
+    assert.ok(
+      disclosure[0].includes("smooth-disclosure"),
+      `Unenhanced disclosure in ${path.relative(root, file)}`,
+    );
+    disclosures++;
+  }
+  for (const svg of html.matchAll(
+    /<svg\b[^>]*class="[^"]*link-arrow[^"]*"[^>]*>/g,
+  )) {
+    assert.ok(
+      svg[0].includes('stroke="currentColor"') &&
+        svg[0].includes('fill="none"'),
+    );
+    assert.ok(
+      svg[0].includes('aria-hidden="true"') &&
+        svg[0].includes('focusable="false"'),
+    );
+    svgArrows++;
+  }
   for (const match of html.matchAll(/(?:href|src)="([^\"]+)"/g)) {
     const value = match[1].replaceAll("&amp;", "&");
     if (!value.startsWith("/") || value.startsWith("//")) continue;
@@ -36,6 +64,19 @@ for (const file of htmlFiles) {
       );
     }
     references++;
+  }
+}
+assert.ok(svgArrows > 0, "Export must contain decorative SVG arrows");
+for (const file of files.filter((file) => file.endsWith(".css"))) {
+  const css = await readFile(file, "utf8");
+  for (const generated of css.matchAll(/\bcontent\s*:\s*([^;{}]+)/g)) {
+    const value = generated[1].replace(/\\([a-f\d]{1,6})\s?/gi, (_, hex) =>
+      String.fromCodePoint(parseInt(hex, 16)),
+    );
+    assert.ok(
+      !unicodeArrows.test(value),
+      `CSS-generated arrow in ${path.relative(root, file)}`,
+    );
   }
 }
 const services = [
@@ -106,5 +147,5 @@ for (const image of [
   assert.equal(bytes[1], 216);
 }
 console.log(
-  `PASS: ${htmlFiles.length} HTML pages, ${references} internal references, seven service routes, six cards, seven timeline stages, enquiry choices, portrait, real screenshots and CV.`,
+  `PASS: ${htmlFiles.length} HTML pages, ${references} internal references, ${svgArrows} decorative SVG arrows, ${disclosures} native motion disclosures, seven service routes, six cards, seven timeline stages, enquiry choices, portrait, real screenshots and CV.`,
 );

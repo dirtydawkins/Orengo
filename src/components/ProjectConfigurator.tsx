@@ -1,4 +1,7 @@
 "use client";
+import { Disclosure } from "@/components/Disclosure";
+
+import { LinkArrow } from "@/components/LinkArrow";
 
 import { useState } from "react";
 import { site, whatsapp } from "@/data/portfolio";
@@ -80,7 +83,7 @@ export function ProjectConfigurator() {
           A few sentences are enough. {details.length}/{detailLimit}
         </p>
       </div>
-      <details className="enquiry-preview">
+      <Disclosure className="enquiry-preview">
         <summary>
           Review your draft{" "}
           <span className="expand-mark" aria-hidden="true">
@@ -88,7 +91,7 @@ export function ProjectConfigurator() {
           </span>
         </summary>
         <p>{draft.message}</p>
-      </details>
+      </Disclosure>
       <div className="enquiry-actions">
         <a
           className="button primary"
@@ -97,11 +100,18 @@ export function ProjectConfigurator() {
           rel="noopener noreferrer"
           aria-describedby="enquiry-send-hint"
         >
-          Continue on WhatsApp <span aria-hidden="true">↗</span>
+          Continue on WhatsApp{" "}
+          <span aria-hidden="true">
+            <LinkArrow />
+          </span>
         </a>
         <div className="contact-alternatives">
-          <a href={email}>Use email instead ↗</a>
-          <a href="tel:+254705370435">Call me ↗</a>
+          <a href={email}>
+            Use email instead <LinkArrow />
+          </a>
+          <a href="tel:+254705370435">
+            Call me <LinkArrow />
+          </a>
         </div>
         <p className="enquiry-hint" id="enquiry-send-hint">
           Your draft opens for you to review and send.

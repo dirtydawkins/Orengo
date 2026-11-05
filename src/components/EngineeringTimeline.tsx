@@ -1,4 +1,5 @@
 "use client";
+import { Disclosure } from "@/components/Disclosure";
 
 import { useEffect, useRef, useState } from "react";
 import { processStages } from "@/data/portfolio";
@@ -43,7 +44,7 @@ export function EngineeringTimeline() {
           data-stage={index}
           className={`timeline-stage ${active === index ? "is-current" : ""} ${active > index ? "is-past" : ""}`}
         >
-          <details
+          <Disclosure
             onToggle={(event) => {
               if (event.currentTarget.open) setActive(index);
             }}
@@ -61,7 +62,7 @@ export function EngineeringTimeline() {
               </span>
             </summary>
             <p className="timeline-extra">{stage.detail}</p>
-          </details>
+          </Disclosure>
         </li>
       ))}
     </ol>

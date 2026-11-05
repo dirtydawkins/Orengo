@@ -14,18 +14,19 @@
     "generate:projects": "node scripts/optimize-projects.mjs"
   },
   "dependencies": {
+    "lucide-react": "1.69.0",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"
   },
   "devDependencies": {
-    "sharp": "0.35.5",
-    "typescript": "latest",
+    "@tailwindcss/postcss": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "sharp": "0.35.5",
     "tailwindcss": "latest",
-    "@tailwindcss/postcss": "latest"
+    "typescript": "latest"
   },
   "engines": {
     "node": ">=22.0.0"

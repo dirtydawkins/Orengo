@@ -149,6 +149,29 @@ summary {
 summary::-webkit-details-marker {
   display: none;
 }
+.link-arrow {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  vertical-align: -0.125em;
+  color: inherit;
+}
+.disclosure-panel {
+  height: auto;
+  transition-property: height;
+  transition-duration: 0.7s;
+  transition-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.disclosure-body {
+  display: flow-root;
+}
+.smooth-disclosure > summary .expand-mark {
+  transition-duration: 0.7s;
+}
+.smooth-disclosure > summary[aria-expanded="false"] .expand-mark {
+  rotate: 0deg;
+}
 .shell {
   padding-inline: var(--gutter);
   max-width: 1680px;
@@ -486,7 +509,6 @@ details[open] > summary > .expand-mark {
   grid-template-columns: 1.2fr 1fr;
   gap: 20px;
   padding: 0 44px 30px 70px;
-  animation: panel-in 0.25s var(--ease);
 }
 .service-expanded ul {
   margin: 0;
@@ -539,7 +561,6 @@ details[open] > summary > .expand-mark {
   margin: 15px 25px 0 40px;
   font-size: 13px;
   color: var(--muted);
-  animation: panel-in 0.25s var(--ease);
 }
 .work {
   padding-bottom: 110px;
@@ -1025,14 +1046,6 @@ details[open] > summary > .expand-mark {
   }
   to {
     clip-path: inset(0);
-  }
-}
-@keyframes panel-in {
-  from {
-    transform: translateY(-5px);
-  }
-  to {
-    transform: translateY(0);
   }
 }
 @media (min-width: 1680px) {
