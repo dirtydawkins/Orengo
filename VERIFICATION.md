@@ -1,16 +1,6 @@
 # Verification
 
-## Latest revision: printed-card refinement
-
-Checked on 5 November 2026.
-
-- Replaced the six ornamental illustrations with original SVG object studies. The actual exported artwork was rendered and visually inspected in both palettes: record cabinet, receipts, reminder clock, padlock/key, stopwatch and server case. This was illustration asset inspection, not a screenshot of the website.
-- Removed repeated geometric frames, crowns, filigree and procedural noise. Fronts use the existing technical topic as their primary title. Each face has a single printed keyline, a fine edge highlight, a paper edge and restrained contact shadows; both palettes remain theme-aware.
-- The deck keeps its native buttons, accessible flipped-state announcements, click/tap/keyboard activation, 5:7 proportions, centered back explanations, responsive carousel and instant reduced-motion alternative. The normal physical turn is now 660ms; no animation library was added.
-- Production build and TypeScript passed. All 19 existing tests passed, including both palette contrast checks. Export validation passed for 12 HTML pages and 364 internal references.
-- Fresh browser interaction and responsive visual checks were unavailable. Browser discovery timed out, and Windows Computer Use stopped because it could not confidently determine the current browser URL for its policy checks. No further browser input was attempted. Earlier browser results below do not verify this new appearance.
-
-## Project spotlight and complete theme coverage
+## Latest revision: project spotlight and complete theme coverage
 
 Checked on 5 November 2026. This section describes the current revision; the later sections retain the checks performed on earlier revisions.
 
