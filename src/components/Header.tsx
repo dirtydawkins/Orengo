@@ -39,7 +39,7 @@ export function Header() {
   const pill = useRef<HTMLSpanElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
-  const appearance = useRef<HTMLDetailsElement>(null);
+  const backdropPointer = useRef(false);
 
   useEffect(() => {
     try {
@@ -48,6 +48,26 @@ export function Header() {
         saved === "dark" || saved === "system" ? saved : "light",
       );
     } catch {}
+    function syncStorage(event: StorageEvent) {
+      if (event.key !== "lameck-theme" && event.key !== null) return;
+      const preference: ThemePreference =
+        event.newValue === "dark" || event.newValue === "system"
+          ? event.newValue
+          : "light";
+      const next =
+        preference === "system"
+          ? matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light"
+          : preference;
+      setThemePreference(preference);
+      setTheme(next);
+      applyDocumentTheme(next);
+    }
+    window.addEventListener("storage", syncStorage);
+    return () => {
+      window.removeEventListener("storage", syncStorage);
+    };
   }, []);
 
   useEffect(() => {
@@ -178,10 +198,6 @@ export function Header() {
     try {
       localStorage.setItem("lameck-theme", preference);
     } catch {}
-    if (appearance.current?.open) {
-      appearance.current.open = false;
-      appearance.current.querySelector("summary")?.focus();
-    }
   }
   function toggle() {
     chooseTheme(theme === "dark" ? "light" : "dark");
@@ -242,45 +258,18 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <details
-          ref={appearance}
-          className="capsule-appearance"
-          onKeyDown={(event) => {
-            if (event.key === "Escape" && appearance.current?.open) {
-              event.preventDefault();
-              appearance.current.open = false;
-              appearance.current.querySelector("summary")?.focus();
-            }
-          }}
-          onBlur={(event) => {
-            if (!event.currentTarget.contains(event.relatedTarget))
-              event.currentTarget.open = false;
-          }}
+        <button
+          type="button"
+          className="capsule-theme"
+          onClick={toggle}
+          data-mode={theme}
+          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
         >
-          <summary className="capsule-theme" aria-label="Change appearance">
-            {themeIcon}
-          </summary>
-          <div
-            className="appearance-options"
-            role="group"
-            aria-label="Appearance options"
-          >
-            {(["light", "dark", "system"] as const).map((preference) => (
-              <button
-                key={preference}
-                onClick={() => chooseTheme(preference)}
-                aria-pressed={themePreference === preference}
-              >
-                {preference === "system"
-                  ? "Use device setting"
-                  : `${preference === "light" ? "Light" : "Dark"} mode`}
-                <span aria-hidden="true">
-                  {themePreference === preference ? "✓" : ""}
-                </span>
-              </button>
-            ))}
-          </div>
-        </details>
+          {themeIcon}
+          <span className="capsule-theme-label">
+            {theme === "dark" ? "Light" : "Dark"}
+          </span>
+        </button>
         {showContact ? (
           <a
             className="capsule-cta"
@@ -308,6 +297,31 @@ export function Header() {
         id="capsule-menu"
         className="capsule-menu"
         aria-label="Navigation menu"
+        onPointerDown={(event) => {
+          const bounds = event.currentTarget.getBoundingClientRect();
+          backdropPointer.current =
+            event.target === event.currentTarget &&
+            (event.clientX < bounds.left ||
+              event.clientX > bounds.right ||
+              event.clientY < bounds.top ||
+              event.clientY > bounds.bottom);
+        }}
+        onPointerCancel={() => {
+          backdropPointer.current = false;
+        }}
+        onClick={(event) => {
+          const bounds = event.currentTarget.getBoundingClientRect();
+          if (
+            backdropPointer.current &&
+            event.target === event.currentTarget &&
+            (event.clientX < bounds.left ||
+              event.clientX > bounds.right ||
+              event.clientY < bounds.top ||
+              event.clientY > bounds.bottom)
+          )
+            close();
+          backdropPointer.current = false;
+        }}
         onCancel={(event) => {
           event.preventDefault();
           close();

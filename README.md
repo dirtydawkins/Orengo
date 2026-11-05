@@ -9,7 +9,7 @@ Use Node.js 22.22 or newer.
 1. `npm ci`
 2. `npm run dev` and open http://127.0.0.1:3000.
 3. `npm run typecheck` checks TypeScript.
-4. `npm test` checks enquiry generation, URL encoding and the early theme bootstrap.
+4. `npm test` checks enquiry generation, project data and image dimensions, navigation helpers, theme contrast and the early theme bootstrap.
 5. `npm run build` generates the static site in `out/`.
 
 After building, `npm run check` verifies exported routes, internal file and anchor references, the six cards, genuine image assets and the PDF download. See `VERIFICATION.md` for the checks performed during this build and their limits.
@@ -22,7 +22,8 @@ Import `dirtydawkins/Orengo`, select the Next.js preset, and name the project `l
 
 ## Update content and assets
 
-- Services, contact information, WhatsApp messages, technical notes and project gallery entries: `src/data/portfolio.ts`.
+- Services, contact information, WhatsApp messages, technical notes and Skills emphasis: `src/data/portfolio.ts`.
+- Verified projects, screenshot dimensions and case-study content: `src/data/projects.ts`. The public dataset contains only LOCKD. `src/lib/projects.ts` defines the typed model and validation.
 - Homepage content: `src/app/page.tsx`.
 - Portrait: `public/images/lameck-orengo.jpg`. Keep the original natural colors; update dimensions if the source changes.
 - CV: `public/assets/Lameck_Orengo_CV_updated.pdf`.
@@ -30,6 +31,7 @@ Import `dirtydawkins/Orengo`, select the Next.js preset, and name the project `l
 - Social preview: `src/app/opengraph-image.png`. Its original typography artwork is defined in `scripts/generate-social.mjs`; run `npm run generate:social` after editing that source, then build.
 - Design tokens, spacing and responsive rules: `src/app/globals.css`.
 - Timeline, enquiry builder and optional comparison styles: `src/app/interactions.css`.
+- Spotlight, responsive gallery, fullscreen viewer and Skills text accents: `src/app/projects.css`.
 - Enquiry choices and draft composition: `src/lib/enquiry.ts`. The builder holds selections and optional text in component memory only. It generates WhatsApp and mailto links without a backend, tracking or draft storage.
 - Seven timeline stages: `processStages` in `src/data/portfolio.ts`.
 - Service pages use `src/app/services/[slug]/page.tsx`; add a data entry to generate another page.
@@ -37,9 +39,9 @@ Import `dirtydawkins/Orengo`, select the Next.js preset, and name the project `l
 
 ## Theme and interactions
 
-Theme initialization runs in the document head. Light mode is the first-visit default, including when storage is unavailable. An explicit saved choice in `localStorage['lameck-theme']` takes precedence on later visits. Appearance controls offer Light, Dark and an optional device setting. The device option follows changes to `prefers-color-scheme` only after the visitor chooses it. The early bootstrap resolves that saved choice before paint and updates browser theme metadata. The portrait has no color filters. Both themes share the layout and use separate readable neutral and accent colors.
+Theme initialization runs in the document head. Light mode is the first-visit default, including when storage is unavailable. An explicit saved choice in `localStorage['lameck-theme']` takes precedence on later visits. The desktop control switches directly between dark and light with one click. The mobile menu also offers an optional device setting. Device appearance follows `prefers-color-scheme` only after the visitor chooses it. The early bootstrap resolves the saved choice before paint and updates browser theme metadata; storage events synchronize open tabs. All sections, menus, controls, forms, gallery frames and the fullscreen viewer use the active palette. The portrait and genuine screenshots keep their original colors.
 
-Services, process steps, experience and the dedicated Skills & Technologies index use native disclosures. Six illustrated engineering cards have original SVG artwork, ivory fronts, dark explanatory backs, and a 640ms CSS 3D flip. Each card flips on click, tap, Enter or Space. Desktop uses a subtly overlapping spread; mobile uses native horizontal scrolling, scroll snapping and previous/next controls. Reduced motion shows the selected face instantly.
+Services, process steps, experience and the dedicated Skills & Technologies index use native disclosures. Skills categories and selected tools use theme-aware sapphire text with slate supporting copy and champagne details. Six illustrated cards have original SVG artwork and separate palettes for both faces: midnight/ivory in dark mode and porcelain/graphite in light mode. The explanatory back text stays centered. Collection branding, internal series numbering and redundant labels have been removed. Each card flips on click, tap, Enter or Space using a 640ms CSS 3D turn. Desktop uses a subtly overlapping spread; mobile uses native horizontal scrolling, scroll snapping and previous/next controls. Reduced motion shows the selected face instantly.
 
 The fixed LO navigation capsule uses a solid sapphire-navy finish in both themes. It compacts after 120px of scrolling, hides after sustained downward travel beyond 650px and returns on upward travel. It remains visible while focused or when reduced motion is requested. Its contact shortcut appears after the homepage hero leaves the reading area, keeping the hero's WhatsApp action as the sole prominent contact button on arrival. Inner pages retain the shortcut. IntersectionObserver drives the moving active indicator. The mobile panel includes all destinations and appearance controls, traps focus through a native dialog, supports Escape, and restores scrolling and focus when closed. The screenshot viewer supports previous/next controls, arrow keys, Escape and touch navigation in the inline gallery.
 
@@ -48,6 +50,14 @@ Selected heading phrases shift from slate to sapphire with CSS scroll timelines 
 Contact uses WhatsApp, email and phone directly. Service messages are encoded with `encodeURIComponent`. WhatsApp and social links open a separate tab. No customer data is collected by this site.
 
 The project enquiry builder provides eight project types, four starting stages, optional details, a draft preview, and matching WhatsApp/email drafts. It opens a draft; it does not send a message or quote a price. The seven-stage engineering timeline uses native disclosures and IntersectionObserver for reading emphasis. Its content is readable without scroll animations. The existing single-project LOCKD showcase, screenshot viewer, six card flips and direct contact actions remain available.
+
+## Project spotlight
+
+Selected Work follows the hero and precedes Services. Desktop uses an asymmetric information/preview composition; mobile puts the screenshot before the project details. LOCKD uses its original desktop screenshots at every viewport, scaled proportionally with the entire image visible. Project selection is enabled only when more than one verified project exists. The gallery is keyed by project identifier so a selection resets its screenshot state without transition timers. The single LOCKD entry uses its real website and existing case-study route.
+
+The gallery supports previous/next controls, counters, arrow keys, deliberate horizontal touch gestures and a native fullscreen dialog. Vertical scrolling is retained. The dialog restores the previous body overflow and returns focus to the opener. Full-resolution dialog images are mounted only when opened. Missing images show a truthful fallback with the real website link. Mobile menu dismissal uses its existing 48px Close control, Escape or a deliberate outside tap; the close row remains sticky inside the scrolling panel.
+
+JPEG originals are 1425×891. `npm run generate:projects` regenerates responsive WebP copies from these originals using Sharp. It does not fabricate or restyle screenshots. Current preview widths are 640, 960 and 1425px, with the same desktop composition on phones. New project records must supply matching asset dimensions and existing case-study routes. LOCKD's source review is recorded in `docs/LOCKD_ENGINEERING_REVIEW.md`.
 
 ## Before-and-after evidence
 

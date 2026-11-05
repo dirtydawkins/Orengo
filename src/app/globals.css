@@ -2,6 +2,7 @@
 @import "./playing-cards.css";
 @import "./navigation.css";
 @import "./interactions.css";
+@import "./projects.css";
 @font-face {
   font-family: Manrope;
   src: url("/fonts/manrope-latin-variable.woff2") format("woff2");
@@ -17,13 +18,36 @@
 :root {
   color-scheme: dark;
   --bg: #0b0d10;
-  --surface: #13161b;
+  --surface: #121821;
   --text: #f2eee6;
-  --muted: #a7a9af;
-  --line: #34383e;
-  --accent: #9abaff;
+  --muted: #b0b8c5;
+  --line: #343e4d;
+  --control-line: #61718a;
+  --accent: #a9ccff;
   --cobalt: #2459c7;
   --champagne: #c8ad82;
+  --paper: #101319;
+  --nav-bg: #0d1e3b;
+  --nav-panel: #0c1b32;
+  --nav-line: #314768;
+  --nav-subline: #263a59;
+  --nav-selected: #243d63;
+  --nav-hover: #1c3458;
+  --nav-text: #f2eee6;
+  --nav-muted: #aac0de;
+  --nav-highlight: #adcafa;
+  --nav-logo-border: #506b91;
+  --nav-cta: #d7e4f7;
+  --card-paper: #141e2c;
+  --card-paper-line: #4b5b73;
+  --card-back: #0c111a;
+  --card-ink: #f2eee6;
+  --card-muted: #b6c0cf;
+  --card-ornament: #c8ad82;
+  --card-ornament-faint: #c8ad8259;
+  --card-accent: #a9ccff;
+  --card-copper: #dca17d;
+  --card-shadow: 0 12px 26px #0006, 0 1px 4px #0005;
   --gutter: clamp(22px, 6.8vw, 112px);
   --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
 }
@@ -34,8 +58,30 @@ html[data-theme="light"] {
   --text: #171a1f;
   --muted: #565c64;
   --line: #cbc7c0;
-  --accent: #2459c7;
+  --control-line: #78808b;
+  --accent: #24549a;
   --champagne: #79623f;
+  --paper: #faf8f3;
+  --nav-bg: #102a56;
+  --nav-panel: #102444;
+  --nav-line: #385783;
+  --nav-subline: #385071;
+  --nav-selected: #284b7a;
+  --nav-hover: #214477;
+  --nav-muted: #b4c2d6;
+  --nav-highlight: #b9d3ff;
+  --nav-logo-border: #6882a6;
+  --nav-cta: #f2eee6;
+  --card-paper: #f2eee6;
+  --card-paper-line: #c9c2b6;
+  --card-back: #e6e2da;
+  --card-ink: #171a1f;
+  --card-muted: #4f5b69;
+  --card-ornament: #765d36;
+  --card-ornament-faint: #80653c59;
+  --card-accent: #24549a;
+  --card-copper: #935c45;
+  --card-shadow: 0 10px 20px #0003, 0 1px 3px #0003;
 }
 * {
   box-sizing: border-box;
@@ -53,6 +99,9 @@ body {
   font-size: 15px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  transition:
+    background-color 0.32s ease,
+    color 0.32s ease;
 }
 a {
   color: inherit;
@@ -352,17 +401,20 @@ h3 {
   color: var(--champagne);
 }
 .paper {
-  --bg: #f2eee6;
-  --text: #171a1f;
-  --muted: #535962;
-  --line: #cdc9c1;
-  --accent: #2459c7;
-  --champagne: #80653c;
+  --bg: var(--paper);
   background: var(--bg);
   color: var(--text);
 }
-html[data-theme="light"] .paper {
-  --bg: #faf8f3;
+main > section,
+.project-lightbox,
+.enquiry-details textarea,
+.project-preview-frame,
+.playing-face {
+  transition:
+    background-color 0.32s ease,
+    color 0.32s ease,
+    border-color 0.32s ease,
+    box-shadow 0.32s ease;
 }
 .section-label {
   color: var(--accent);
@@ -543,7 +595,7 @@ details[open] > summary > .expand-mark {
 .arrow-controls button {
   width: 44px;
   height: 44px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--control-line);
   font-size: 18px;
   transition:
     background 0.2s,
@@ -756,6 +808,20 @@ details[open] > summary > .expand-mark {
   font-size: 12px;
 }
 .contact-alternatives a:hover {
+  color: var(--accent);
+}
+.contact-alternatives a,
+.hero-actions .under-link {
+  color: var(--accent);
+}
+.contact-alternatives a:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.problem-list details[open] summary,
+.stack-index details[open] summary,
+.experience-details[open] summary,
+.education details[open] summary {
   color: var(--accent);
 }
 .contact-details {

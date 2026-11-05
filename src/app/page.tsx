@@ -2,12 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { ContactActions, SectionLabel, SocialLinks } from "@/components/Shared";
 import { EngineeringDeck } from "@/components/EngineeringDeck";
-import { ProjectGallery } from "@/components/ProjectGallery";
+import { ProjectSpotlight } from "@/components/ProjectSpotlight";
 import { EngineeringTimeline } from "@/components/EngineeringTimeline";
 import { ProjectConfigurator } from "@/components/ProjectConfigurator";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { comparisons } from "@/data/comparisons";
-import { project, services, site, stack, whatsapp } from "@/data/portfolio";
+import {
+  services,
+  site,
+  stack,
+  skillEmphasis,
+  whatsapp,
+} from "@/data/portfolio";
+import { projects } from "@/data/projects";
 export default function Home() {
   return (
     <main id="main">
@@ -27,9 +34,9 @@ export default function Home() {
             </span>
           </h1>
           <p className="hero-intro">
-            I’m Lameck, a full-stack developer based in Nairobi. I build
-            websites, web applications, and business systems that make everyday
-            work easier.
+            I’m <span className="accent-text">Lameck</span>, a full-stack
+            developer based in Nairobi. I build websites, web applications, and
+            business systems that make everyday work easier.
           </p>
           <div className="hero-actions">
             <a
@@ -75,6 +82,29 @@ export default function Home() {
         </div>
       </section>
       <section
+        className="section spotlight-section shell"
+        id="work"
+        aria-labelledby="work-title"
+      >
+        <div className="section-head">
+          <div>
+            <SectionLabel number="01">Selected work</SectionLabel>
+            <h2 id="work-title">
+              Selected <span className="adaptive-ink">Work</span>
+            </h2>
+          </div>
+          <p>Real projects. Built with purpose.</p>
+        </div>
+        <ProjectSpotlight
+          projects={projects.map(
+            ({ caseStudy: _notes, ...summary }) => summary,
+          )}
+        />
+        {comparisons.map((comparison) => (
+          <BeforeAfter key={comparison.id} comparison={comparison} />
+        ))}
+      </section>
+      <section
         className="paper section"
         id="services"
         aria-labelledby="services-title"
@@ -82,7 +112,7 @@ export default function Home() {
         <div className="shell">
           <div className="section-head">
             <div>
-              <SectionLabel number="01">Services</SectionLabel>
+              <SectionLabel number="02">Services</SectionLabel>
               <h2 id="services-title">
                 What I can
                 <br />
@@ -140,11 +170,11 @@ export default function Home() {
         aria-labelledby="problems-title"
       >
         <div>
-          <SectionLabel number="02">The everyday problems</SectionLabel>
+          <SectionLabel number="03">The everyday problems</SectionLabel>
           <h2 id="problems-title">
             Less manual work.
             <br />
-            Fewer things missed.
+            <span className="adaptive-ink">Fewer things missed.</span>
           </h2>
           <p className="section-copy">
             Start with the friction. Then work out what software can usefully
@@ -186,60 +216,6 @@ export default function Home() {
         </div>
       </section>
       <section
-        className="section work shell"
-        id="work"
-        aria-labelledby="work-title"
-      >
-        <div className="section-head">
-          <div>
-            <SectionLabel number="03">Selected work</SectionLabel>
-            <h2 id="work-title">
-              Built, and out
-              <br />
-              <span className="adaptive-ink">in the world.</span>
-            </h2>
-          </div>
-          <p>A closer look at one live project.</p>
-        </div>
-        <ProjectGallery />
-        <div className="project-description">
-          <div>
-            <p className="mono project-type">
-              Web application / rental discovery
-            </p>
-            <h3>
-              LOCKD<span className="period">.</span>
-            </h3>
-            <p className="mono project-stack">
-              {project.technologies.join(" / ")}
-            </p>
-          </div>
-          <div>
-            <p>{project.description}</p>
-            <p className="subtle">
-              A public interface for exploring rental categories, locations, and
-              listing details.
-            </p>
-            <div className="project-links">
-              <a
-                className="under-link"
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Visit LOCKD ↗
-              </a>
-              <Link className="under-link" href="/work/lockd/">
-                Read the project notes →
-              </Link>
-            </div>
-          </div>
-        </div>
-        {comparisons.map((comparison) => (
-          <BeforeAfter key={comparison.id} comparison={comparison} />
-        ))}
-      </section>
-      <section
         className="section engineering"
         aria-labelledby="engineering-title"
       >
@@ -247,7 +223,9 @@ export default function Home() {
           <div className="section-head">
             <div>
               <SectionLabel number="04">Engineering notes</SectionLabel>
-              <h2 id="engineering-title">Behind the build.</h2>
+              <h2 id="engineering-title">
+                Behind the <span className="adaptive-ink">build.</span>
+              </h2>
             </div>
             <p>
               Some of the details that matter
@@ -266,7 +244,9 @@ export default function Home() {
         <div className="shell split-section">
           <div className="timeline-intro">
             <SectionLabel number="05">The process</SectionLabel>
-            <h2 id="process-title">How I work.</h2>
+            <h2 id="process-title">
+              How I <span className="adaptive-ink">work.</span>
+            </h2>
             <p className="section-copy">
               From the first conversation to a working product.
             </p>
@@ -286,7 +266,7 @@ export default function Home() {
             <h2 id="experience-title">
               Full-stack
               <br />
-              developer.
+              <span className="adaptive-ink">developer.</span>
             </h2>
             <p className="subtle">
               Self-employed / Freelance
@@ -334,9 +314,9 @@ export default function Home() {
           <div>
             <SectionLabel number="07">The technical index</SectionLabel>
             <h2 id="skills-title">
-              Skills &amp;
+              Skills <span className="champagne">&amp;</span>
               <br />
-              Technologies.
+              <span className="adaptive-ink">Technologies.</span>
             </h2>
             <p className="section-copy">
               The tools I use, and where they fit in the work.
@@ -349,7 +329,20 @@ export default function Home() {
                   {title}
                   <span className="expand-mark">+</span>
                 </summary>
-                <p>{tools}</p>
+                <ul className="skill-tools" aria-label={`${title} tools`}>
+                  {tools.split(", ").map((tool) => (
+                    <li
+                      key={tool}
+                      className={
+                        skillEmphasis[title]?.includes(tool)
+                          ? "skill-emphasis"
+                          : undefined
+                      }
+                    >
+                      {tool}
+                    </li>
+                  ))}
+                </ul>
                 <p className="subtle">{usage}</p>
               </details>
             ))}

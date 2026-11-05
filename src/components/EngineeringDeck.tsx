@@ -114,8 +114,7 @@ export function EngineeringDeck() {
       aria-label="Six engineering playing cards"
     >
       <div className="playing-deck-intro">
-        <p>Six cards. A few considered decisions.</p>
-        <span className="mono">Turn a card to see the detail</span>
+        <span className="mono">Select a card to turn it.</span>
       </div>
       <div className="playing-rail" ref={rail} onScroll={trackScroll}>
         {faces.map((face, index) => {
@@ -139,31 +138,23 @@ export function EngineeringDeck() {
                     <b>{face.rank}</b>
                     <span>{face.suit}</span>
                   </span>
-                  <span className="card-edition mono">
-                    LO / ENGINEERING SERIES
-                  </span>
                   <CardArtwork index={index} />
                   <span className="card-face-name">{face.name}</span>
                   <span className="card-theme">{card.title}</span>
-                  <span className="card-series mono">0{index + 1} / VI</span>
                 </span>
                 <span className="playing-face card-back" aria-hidden="true">
                   <span className="card-engraving" />
                   <span className="card-back-symbol">{face.suit}</span>
-                  <span className="card-back-kicker mono">
-                    0{index + 1} / THE DETAIL
-                  </span>
                   <span className="card-back-title">{card.label}</span>
                   <span className="card-explanation">{card.body}</span>
                   <span className="card-tech">
-                    <span className="mono">TOOLS & PRACTICE</span>
+                    <span className="mono">Tools</span>
                     {face.tech}
                   </span>
                   <span className="card-example">
-                    <span className="mono">AN ILLUSTRATIVE EXAMPLE</span>
+                    <span className="mono">Example</span>
                     {face.example}
                   </span>
-                  <span className="card-return mono">Turn to the front ↶</span>
                 </span>
               </span>
             </button>
@@ -171,9 +162,6 @@ export function EngineeringDeck() {
         })}
       </div>
       <div className="playing-deck-footer">
-        <p className="mono">
-          Original card illustrations · Practical engineering notes
-        </p>
         <div className="deck-browse">
           <span className="mono" aria-live="polite">
             0{active + 1} / 06

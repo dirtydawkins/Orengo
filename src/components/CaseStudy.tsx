@@ -1,17 +1,21 @@
 import Link from "next/link";
 import { ProjectGallery } from "./ProjectGallery";
 import { ContactActions } from "./Shared";
-import { project } from "@/data/portfolio";
-export function CaseStudy() {
+import { site } from "@/data/portfolio";
+import type { PortfolioProject } from "@/lib/projects";
+
+export function CaseStudy({ project }: { project: PortfolioProject }) {
+  const notes = project.caseStudy;
   return (
     <main id="main">
       <section className="detail-hero shell">
         <Link className="back-link" href="/#work">
           ← Back to selected work
         </Link>
-        <p className="mono champagne">Project notes / Public interface</p>
+        <p className="mono champagne">Project notes / {project.category}</p>
         <h1>
-          LOCKD<span className="period">.</span>
+          {project.title}
+          <span className="period">.</span>
         </h1>
         <p className="lead">{project.description}</p>
         <a
@@ -20,104 +24,98 @@ export function CaseStudy() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Open the live website ↗
+          Visit Live Website ↗
         </a>
       </section>
       <div className="shell case-gallery">
-        <ProjectGallery />
+        <ProjectGallery
+          project={{
+            id: project.id,
+            title: project.title,
+            url: project.url,
+            images: project.images,
+          }}
+        />
       </div>
       <section className="shell detail-body">
         <aside className="detail-aside">
-          <p className="mono">Role</p>
-          <p>Developer</p>
-          <p className="mono" style={{ marginTop: 28 }}>
-            Public front end
-          </p>
-          <p>{project.technologies.join(" · ")}</p>
-          <p className="mono" style={{ marginTop: 28 }}>
-            Scope of these notes
-          </p>
-          <p>
-            The public rental discovery experience visible on the live website.
-          </p>
+          {notes?.role ? (
+            <>
+              <p className="mono">Developer’s role</p>
+              <p>{notes.role}</p>
+            </>
+          ) : null}
+          {project.technologies.length ? (
+            <>
+              <p className="mono" style={{ marginTop: 28 }}>
+                Technologies
+              </p>
+              <p>{project.technologies.join(" · ")}</p>
+            </>
+          ) : null}
+          {project.status ? (
+            <>
+              <p className="mono" style={{ marginTop: 28 }}>
+                Status
+              </p>
+              <p>{project.status}</p>
+            </>
+          ) : null}
         </aside>
         <div>
-          <h2>A place to start looking</h2>
-          <p>
-            LOCKD brings stays, cars, technology, gaming equipment, and
-            experiences into one rental discovery interface. Visitors can browse
-            categories, choose a location, and inspect listing details.
-          </p>
-          <h2>The people using it</h2>
-          <p>
-            People looking for a stay, a vehicle, or equipment, alongside
-            listers who have something available to rent.
-          </p>
-          <h2>Interface and architecture</h2>
-          <p>
-            The public site uses HTML, CSS, and JavaScript, with category and
-            discovery pages connected through clear navigation. Search controls
-            collect the item, category, and location before visitors explore
-            rental details.
-          </p>
-          <h2>Decisions visible in the interface</h2>
-          <ul>
-            <li>
-              Categories provide different starting points for stays, vehicles,
-              and equipment.
-            </li>
-            <li>
-              Location controls help visitors narrow the discovery experience.
-            </li>
-            <li>
-              Separate listing details give space for availability and rental
-              terms.
-            </li>
-            <li>
-              Responsive layouts make the public interface usable across screen
-              sizes.
-            </li>
-          </ul>
-          <h2>Questions worth getting right</h2>
-          <p>
-            A rental interface needs to make categories, dates, location, and
-            availability understandable before a customer makes a request. The
-            portfolio’s engineering notes explain related practices from my
-            wider work, including booking constraints and payment events.
-          </p>
-          <h2>Current status</h2>
-          <dl className="case-evidence">
-            <div>
-              <dt>Deployed</dt>
-              <dd>
-                The public rental discovery interface at lockd2.vercel.app.
-              </dd>
-            </div>
-            <div>
-              <dt>Reviewed here</dt>
-              <dd>
-                Genuine screenshots, navigation, category organisation, and the
-                public discovery experience.
-              </dd>
-            </div>
-            <div>
-              <dt>Not verified</dt>
-              <dd>
-                Completed reservations, private administration, payment
-                processing, customer activity, and revenue.
-              </dd>
-            </div>
-          </dl>
-          <h2>What the interface makes clear</h2>
-          <p>
-            Different rental categories need a clear starting point, while
-            location and listing details need enough space to answer the next
-            question. These are the design decisions this showcase documents.
-          </p>
+          {notes?.sections.map((section) => (
+            <section className="case-study-part" key={section.title}>
+              <h2>{section.title}</h2>
+              {section.body ? <p>{section.body}</p> : null}
+              {section.points?.length ? (
+                <ul>
+                  {section.points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              ) : null}
+            </section>
+          ))}
+          {notes?.evidence.length ? (
+            <>
+              <h2>Architecture and delivery</h2>
+              <dl className="case-evidence">
+                {notes.evidence.map((item) => (
+                  <div key={item.label}>
+                    <dt>{item.label}</dt>
+                    <dd>{item.detail}</dd>
+                  </div>
+                ))}
+              </dl>
+            </>
+          ) : null}
           <h2>Building something with similar requirements?</h2>
-          <ContactActions message="Hi Lameck, I saw LOCKD in your portfolio and would like to discuss a web application." />
+          <ContactActions
+            message={`Hi Lameck, I saw ${project.title} in your portfolio and would like to discuss a web application.`}
+          />
         </div>
       </section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CreativeWork",
+            name: `${project.title} project notes`,
+            description: project.description,
+            url: `${site.url}${project.caseStudyUrl ?? "/#work"}`,
+            creator: { "@type": "Person", name: site.name, url: site.url },
+            about: {
+              "@type": "WebSite",
+              name: project.title,
+              url: project.url,
+            },
+            image: project.images[0]
+              ? `${site.url}${project.images[0].src}`
+              : undefined,
+          }).replace(/</g, "\\u003c"),
+        }}
+      />
     </main>
   );
 }

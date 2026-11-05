@@ -234,22 +234,12 @@ export const stack = [
     "Analysis, checks, and regression testing.",
   ],
 ] as const;
-export const project = {
-  title: "LOCKD",
-  url: "https://lockd2.vercel.app/",
-  technologies: ["HTML", "CSS", "JavaScript"],
-  description:
-    "A Kenya-first rental marketplace for stays, vehicles, gaming, gadgets, and experiences.",
-  images: [
-    {
-      src: "/projects/lockd-home.jpg",
-      alt: "Genuine screenshot of the live LOCKD rental marketplace homepage.",
-      caption: "01 / Homepage · live public interface",
-    },
-    {
-      src: "/projects/lockd-categories.jpg",
-      alt: "Genuine screenshot of rental categories on the live LOCKD website.",
-      caption: "02 / Rental discovery · live public interface",
-    },
-  ],
+export const skillEmphasis: Record<string, string[]> = {
+  Frontend: ["TypeScript", "React", "Next.js"],
+  Backend: ["Node.js", "Express", "REST APIs"],
+  "Databases & jobs": ["PostgreSQL", "Supabase", "Redis", "BullMQ"],
+  Payments: ["M-Pesa Daraja", "Stripe"],
+  Infrastructure: ["AWS", "Docker", "Vercel"],
+  "Data & testing": ["Python", "pandas", "scikit-learn"],
 };
+export { project } from "./projects";

@@ -1,6 +1,20 @@
 # Verification
 
-Checked on 5 November 2026 against the production static export.
+## Latest revision: project spotlight and complete theme coverage
+
+Checked on 5 November 2026. This section describes the current revision; the later sections retain the checks performed on earlier revisions.
+
+- Automated suite: 19 tests passed. These cover enquiry drafts, the actual project records and asset dimensions, safe URLs, project selection, gallery navigation and swipe thresholds, theme bootstrap preferences, and text/control contrast in both palettes.
+- Production build and TypeScript passed with Next.js 16.4.5. Export validation passed for 12 HTML pages and 364 internal references, including all seven service routes, the LOCKD case study, responsive screenshot assets and the actual CV. Portrait and CV hashes still match the supplied originals.
+- The dataset contains only LOCKD. Both screenshots are the existing 1425×891 desktop originals. Responsive WebP copies retain the same composition at phone and desktop widths. No mobile-specific capture or invented project is published.
+- Source review: the spotlight follows the hero and precedes Services. The gallery uses reserved aspect ratios, `object-fit: contain`, accessible previous/next controls, native fullscreen dialog behavior, keyboard handlers, deliberate touch gestures and a missing-image fallback. Full-resolution viewer images mount on demand.
+- Theme review: the paper sections inherit the active palette. Navigation, forms, controls, screenshot viewer, Skills typography, illustrations and both card faces use theme variables. Desktop theme switching is a single button; the mobile menu keeps its optional device preference. Light remains the first-visit default.
+- Card review: redundant collection branding and detail indices are absent; useful explanations, technologies and examples remain. Back-face text stays centered, the original click/tap/keyboard flip remains, and carousel controls are available below the desktop spread breakpoint.
+- Mobile menu review: one larger sticky Close control remains. Intentional outside taps and Escape dismiss it; no extra close buttons were added.
+- LOCKD architecture was checked separately against its original source. Fifteen read-only source checks and eight local Python API tests passed; the live Render health endpoint returned HTTP 200. See `docs/LOCKD_ENGINEERING_REVIEW.md` for the exact scope and provider rollout evidence. This does not establish that every integration is operational.
+- **Fresh interactive browser verification was not completed for this revision.** Browser-control calls repeatedly timed out after a runtime reset. The checks above are automated tests, build/export validation and source review; they do not replace new desktop/mobile visual and interaction checks. No fresh Lighthouse, physical-device or reduced-motion emulation results are claimed.
+
+## Earlier production export
 
 - Production build: passed with Next.js 16.4.5; TypeScript passed. Homepage, seven service pages, project notes, metadata image, sitemap and robots generated successfully.
 - Export integrity: 12 HTML files and 331 internal file/anchor references passed `scripts/check-export.mjs`.

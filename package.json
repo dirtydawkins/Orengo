@@ -8,9 +8,10 @@
     "build": "next build",
     "start": "node scripts/serve.mjs",
     "typecheck": "next typegen && tsc --noEmit",
-    "test": "node --experimental-strip-types --test tests/enquiry.test.mjs tests/theme.test.mjs",
+    "test": "node --experimental-strip-types --test tests/enquiry.test.mjs tests/theme.test.mjs tests/projects.test.mjs",
     "check": "node scripts/check-export.mjs",
-    "generate:social": "node scripts/generate-social.mjs"
+    "generate:social": "node scripts/generate-social.mjs",
+    "generate:projects": "node scripts/optimize-projects.mjs"
   },
   "dependencies": {
     "next": "latest",
@@ -18,6 +19,7 @@
     "react-dom": "latest"
   },
   "devDependencies": {
+    "sharp": "0.35.5",
     "typescript": "latest",
     "@types/node": "latest",
     "@types/react": "latest",

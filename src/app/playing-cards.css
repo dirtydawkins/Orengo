@@ -8,6 +8,14 @@
 .playing-deck-intro {
   margin-bottom: 22px;
 }
+.playing-deck-footer {
+  justify-content: flex-end;
+}
+@media (min-width: 1400px) {
+  .playing-deck-footer {
+    display: none;
+  }
+}
 .playing-deck-intro > p {
   font-size: 14px;
 }
@@ -106,15 +114,13 @@
   border-radius: 12px;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  box-shadow:
-    0 10px 20px #0003,
-    0 1px 3px #0003;
+  box-shadow: var(--card-shadow);
   overflow: hidden;
 }
 .card-front {
-  background: #f2eee6;
-  color: #171a1f;
-  border: 1px solid #c9c2b6;
+  background: var(--card-paper);
+  color: var(--card-ink);
+  border: 1px solid var(--card-paper-line);
   transform: rotateY(0) translateZ(0.5px);
 }
 .card-front:after {
@@ -128,7 +134,7 @@
 .card-engraving {
   position: absolute;
   inset: 8px;
-  border: 1px solid #b5996b;
+  border: 1px solid var(--card-ornament);
   border-radius: 7px;
   pointer-events: none;
 }
@@ -136,7 +142,7 @@
   content: "";
   position: absolute;
   inset: 4px;
-  border: 1px solid #c8ad8259;
+  border: 1px solid var(--card-ornament-faint);
   border-radius: 3px;
 }
 .card-corner {
@@ -147,7 +153,7 @@
   line-height: 1;
   gap: 2px;
   font-family: Georgia, serif;
-  color: #171a1f;
+  color: var(--card-ink);
 }
 .card-corner b {
   font-size: clamp(19px, 9cqw, 28px);
@@ -167,7 +173,7 @@
 }
 .playing-card:nth-child(2) .card-corner,
 .playing-card:nth-child(3) .card-corner {
-  color: #935c45;
+  color: var(--card-copper);
 }
 .card-edition {
   position: absolute;
@@ -177,7 +183,7 @@
   text-align: center;
   font-size: clamp(5px, 2.5cqw, 8px);
   letter-spacing: 0.04em;
-  color: #75603e;
+  color: var(--card-ornament);
 }
 .card-art {
   position: absolute;
@@ -185,11 +191,11 @@
   left: 16%;
   width: 68%;
   height: 55%;
-  color: #282c31;
+  color: var(--card-ink);
 }
 .art-frame,
 .art-filigree {
-  stroke: #b29870;
+  stroke: var(--card-ornament);
 }
 .art-frame {
   opacity: 0.6;
@@ -198,7 +204,7 @@
   opacity: 0.8;
 }
 .art-cobalt {
-  stroke: #2459c7;
+  stroke: var(--card-accent);
 }
 .card-face-name {
   position: absolute;
@@ -219,7 +225,7 @@
   font-size: clamp(8px, 3.6cqw, 11px);
   text-align: center;
   line-height: 1.45;
-  color: #5e5c56;
+  color: var(--card-muted);
 }
 .card-series {
   position: absolute;
@@ -227,21 +233,22 @@
   left: 30%;
   right: 30%;
   text-align: center;
-  color: #80653c;
+  color: var(--card-ornament);
   font-size: clamp(6px, 2.6cqw, 8px);
 }
 .card-back {
-  background-color: #0b0d10;
-  color: #f2eee6;
+  text-align: center;
+  background-color: var(--card-back);
+  color: var(--card-ink);
   transform: rotateY(180deg) translateZ(0.5px);
   padding: 10% 11%;
   display: flex;
   flex-direction: column;
-  border: 1px solid #75603e;
+  border: 1px solid var(--card-ornament);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cpath d='m30 3 27 27-27 27L3 30ZM30 12l18 18-18 18-18-18Z' fill='none' stroke='%23c8ad82' opacity='.055' stroke-width='.6'/%3E%3C/svg%3E");
 }
 .card-back .card-engraving {
-  border-color: #c8ad8299;
+  border-color: var(--card-ornament);
 }
 .card-back-symbol {
   position: absolute;
@@ -249,17 +256,18 @@
   top: 9%;
   font-family: Georgia, serif;
   font-size: clamp(17px, 9cqw, 26px);
-  color: #c8ad82;
+  color: var(--card-ornament);
   line-height: 1;
 }
 .card-back-kicker {
-  color: #c8ad82;
+  color: var(--card-ornament);
   font-size: clamp(6px, 2.6cqw, 8px);
   padding-top: 3px;
   max-width: 80%;
   letter-spacing: 0.02em;
 }
 .card-back-title {
+  align-self: center;
   font-size: clamp(13px, 6.3cqw, 19px);
   letter-spacing: -0.035em;
   line-height: 1.2;
@@ -271,14 +279,14 @@
   font-size: clamp(10px, 4.4cqw, 13px);
   line-height: 1.5;
   margin-top: 6%;
-  color: #f2eee6;
+  color: var(--card-ink);
 }
 .card-tech,
 .card-example {
   font-size: clamp(9px, 3.8cqw, 12px);
   line-height: 1.45;
   margin-top: 6%;
-  color: #c0c1c4;
+  color: var(--card-muted);
 }
 .card-tech .mono,
 .card-example .mono {
@@ -286,16 +294,16 @@
   font-size: clamp(6px, 2.5cqw, 8px);
   letter-spacing: 0.03em;
   margin-bottom: 4px;
-  color: #c8ad82;
+  color: var(--card-ornament);
 }
 .card-tech {
-  color: #a8c3ff;
+  color: var(--card-accent);
 }
 .card-return {
   margin-top: auto;
   padding-top: 7%;
   font-size: clamp(6px, 2.6cqw, 8px);
-  color: #c8ad82;
+  color: var(--card-ornament);
 }
 .playing-deck-footer {
   border-top: 1px solid var(--line);
@@ -388,8 +396,8 @@
     gap: 5px;
   }
   .deck-browse .arrow-controls button {
-    width: 38px;
-    height: 38px;
+    width: 44px;
+    height: 44px;
   }
   .playing-card:focus-visible {
     outline-offset: 4px;
