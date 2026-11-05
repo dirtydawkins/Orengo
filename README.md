@@ -55,7 +55,7 @@ The project enquiry builder provides eight project types, four starting stages, 
 
 `src/components/LinkArrow.tsx` uses Lucide's `ArrowUpRight` for external links and its directional SVG variants for navigation, gallery controls and downloads. Icons inherit `currentColor`, size with the surrounding text, and are hidden from screen readers. Existing arrow wrappers, link gaps and hover translations are retained. The export check rejects Unicode/emoji arrows, variation selectors and CSS-generated arrow glyphs.
 
-`src/components/Disclosure.tsx` keeps native `details`/`summary` semantics and enhances opening and closing with a measured height transition. The duration is `0.7s` in `globals.css`. Repeated activation reverses from the current height; completion restores automatic sizing. Keyboard activation uses the native summary click. Reduced motion is immediate, and native disclosures still work without JavaScript. The mobile menu has a matching short slide on opening.
+`src/components/Disclosure.tsx` keeps native `details`/`summary` semantics and enhances opening and closing with the same measured height transition. The duration is `0.7s` in `globals.css`. Closed panels explicitly start at zero height; two animation frames separate that starting height from expansion. Repeated activation reverses from the current height; completion restores automatic sizing. Keyboard activation uses the native summary click. Reduced motion is immediate, and native disclosures still work without JavaScript. The mobile menu has a matching short slide on opening.
 
 ## Project spotlight
 

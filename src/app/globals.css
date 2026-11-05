@@ -163,6 +163,10 @@ summary::-webkit-details-marker {
   transition-duration: 0.7s;
   transition-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
+.smooth-disclosure:not([open]) > .disclosure-panel {
+  height: 0;
+  overflow: hidden;
+}
 .disclosure-body {
   display: flow-root;
 }

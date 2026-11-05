@@ -75,7 +75,8 @@ export function Disclosure({
     if (!element || !content || !inner) return;
     event.preventDefault();
     const open = !(turn.current?.open ?? element.open);
-    const height = content.getBoundingClientRect().height;
+    // Closed details can retain intrinsic child metrics. Always open from zero.
+    const height = element.open ? content.getBoundingClientRect().height : 0;
     cancel();
     const time = getComputedStyle(content)
       .transitionDuration.split(",")[0]
@@ -108,8 +109,12 @@ export function Disclosure({
     turn.current = current;
     current.frame = requestAnimationFrame(() => {
       if (turn.current !== current) return;
-      content.style.height = `${open ? inner.getBoundingClientRect().height : 0}px`;
-      current.timer = setTimeout(finish, duration + 80);
+      // Safari must paint the starting height before the next frame retargets it.
+      current.frame = requestAnimationFrame(() => {
+        if (turn.current !== current) return;
+        content.style.height = `${open ? inner.getBoundingClientRect().height : 0}px`;
+        current.timer = setTimeout(finish, duration + 80);
+      });
     });
   }
 
