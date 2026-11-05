@@ -69,7 +69,7 @@ export function EngineeringDeck() {
       previous.map((value, i) => (i === index ? !value : value)),
     );
     setAnnouncement(
-      `${faces[index].name}: ${flipped[index] ? "front face" : engineering[index].body}`,
+      `${engineering[index].label}: ${flipped[index] ? "front face" : engineering[index].body}`,
     );
   }
   function browse(delta: number) {
@@ -111,7 +111,7 @@ export function EngineeringDeck() {
     <div
       className="playing-deck"
       role="region"
-      aria-label="Six engineering playing cards"
+      aria-label="Six engineering cards"
     >
       <div className="playing-deck-intro">
         <span className="mono">Select a card to turn it.</span>
@@ -122,9 +122,10 @@ export function EngineeringDeck() {
           return (
             <button
               key={face.name}
+              type="button"
               className={`playing-card ${flipped[index] ? "is-flipped" : ""}`}
               aria-pressed={flipped[index]}
-              aria-label={`${face.name}. ${flipped[index] ? `${card.body} Technologies: ${face.tech}. Illustrative example: ${face.example}. Activate to return to the front.` : `${card.title}. Activate to reveal the engineering detail.`}`}
+              aria-label={`${card.label}. ${flipped[index] ? `${card.body} Technologies: ${face.tech}. Illustrative example: ${face.example}. Activate to return to the front.` : `${card.title}. Activate to reveal the engineering detail.`}`}
               onClick={() => flip(index)}
             >
               <span className="playing-inner">
@@ -139,7 +140,7 @@ export function EngineeringDeck() {
                     <span>{face.suit}</span>
                   </span>
                   <CardArtwork index={index} />
-                  <span className="card-face-name">{face.name}</span>
+                  <span className="card-face-name">{card.label}</span>
                   <span className="card-theme">{card.title}</span>
                 </span>
                 <span className="playing-face card-back" aria-hidden="true">
@@ -170,14 +171,14 @@ export function EngineeringDeck() {
             <button
               disabled={active === 0}
               onClick={() => browse(-1)}
-              aria-label="Previous playing card"
+              aria-label="Previous engineering card"
             >
               ←
             </button>
             <button
               disabled={active === 5}
               onClick={() => browse(1)}
-              aria-label="Next playing card"
+              aria-label="Next engineering card"
             >
               →
             </button>

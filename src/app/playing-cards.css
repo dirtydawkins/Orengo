@@ -39,7 +39,7 @@
   min-width: 0;
   padding: 0;
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   perspective: 1200px;
   container-type: inline-size;
   text-align: left;
@@ -53,38 +53,38 @@
   margin-left: -55px;
 }
 .playing-card:nth-child(1) {
-  --card-angle: -3deg;
+  --card-angle: -1.4deg;
   --stagger: 5px;
   z-index: 1;
 }
 .playing-card:nth-child(2) {
-  --card-angle: -1.7deg;
-  --stagger: -4px;
+  --card-angle: 0.7deg;
+  --stagger: 1px;
   z-index: 2;
 }
 .playing-card:nth-child(3) {
-  --card-angle: -0.5deg;
-  --stagger: 2px;
+  --card-angle: -0.9deg;
+  --stagger: 4px;
   z-index: 3;
 }
 .playing-card:nth-child(4) {
-  --card-angle: 0.8deg;
-  --stagger: -3px;
+  --card-angle: 1.1deg;
+  --stagger: -1px;
   z-index: 4;
 }
 .playing-card:nth-child(5) {
-  --card-angle: 1.8deg;
+  --card-angle: -0.5deg;
   --stagger: 2px;
   z-index: 5;
 }
 .playing-card:nth-child(6) {
-  --card-angle: 3deg;
-  --stagger: 5px;
+  --card-angle: 0.9deg;
+  --stagger: 6px;
   z-index: 6;
 }
 .playing-card.is-flipped {
   z-index: 15;
-  transform: translateY(-10px) rotate(0);
+  transform: translateY(-7px) rotate(0);
 }
 .playing-card:focus-visible {
   z-index: 20;
@@ -93,7 +93,7 @@
 }
 @media (hover: hover) {
   .playing-card:hover {
-    transform: translateY(-18px) rotate(0);
+    transform: translateY(-10px) rotate(0);
     z-index: 20;
   }
 }
@@ -102,7 +102,7 @@
   inset: 0;
   display: block;
   transform-style: preserve-3d;
-  transition: transform 0.64s cubic-bezier(0.24, 0.65, 0.28, 1);
+  transition: transform 0.66s cubic-bezier(0.3, 0.65, 0.25, 1);
 }
 .playing-card.is-flipped .playing-inner {
   transform: rotateY(180deg);
@@ -111,39 +111,37 @@
   position: absolute;
   inset: 0;
   display: block;
-  border-radius: 12px;
+  border-radius: 10px;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  box-shadow: var(--card-shadow);
+  box-shadow:
+    0 1px 0 1px var(--card-edge),
+    var(--card-shadow);
   overflow: hidden;
 }
 .card-front {
   background: var(--card-paper);
   color: var(--card-ink);
   border: 1px solid var(--card-paper-line);
-  transform: rotateY(0) translateZ(0.5px);
+  transform: rotateY(0) translateZ(0.7px);
 }
-.card-front:after {
+.playing-face:after {
   content: "";
   position: absolute;
   inset: 0;
-  opacity: 0.055;
+  border-radius: inherit;
   pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='.5'/%3E%3C/svg%3E");
+  box-shadow:
+    inset 0 1px 0 var(--card-highlight),
+    inset 0 -1px 0 var(--card-edge);
 }
 .card-engraving {
   position: absolute;
-  inset: 8px;
-  border: 1px solid var(--card-ornament);
-  border-radius: 7px;
-  pointer-events: none;
-}
-.card-engraving:after {
-  content: "";
-  position: absolute;
-  inset: 4px;
-  border: 1px solid var(--card-ornament-faint);
+  inset: 12px;
+  border: 1px solid var(--card-paper-line);
   border-radius: 3px;
+  opacity: 0.7;
+  pointer-events: none;
 }
 .card-corner {
   position: absolute;
@@ -156,11 +154,11 @@
   color: var(--card-ink);
 }
 .card-corner b {
-  font-size: clamp(19px, 9cqw, 28px);
+  font-size: clamp(18px, 8cqw, 23px);
   font-weight: 400;
 }
 .card-corner > span {
-  font-size: clamp(12px, 5cqw, 17px);
+  font-size: clamp(11px, 4.5cqw, 14px);
 }
 .card-corner.top {
   top: 19px;
@@ -175,96 +173,76 @@
 .playing-card:nth-child(3) .card-corner {
   color: var(--card-copper);
 }
-.card-edition {
-  position: absolute;
-  left: 20%;
-  right: 20%;
-  top: 25px;
-  text-align: center;
-  font-size: clamp(5px, 2.5cqw, 8px);
-  letter-spacing: 0.04em;
-  color: var(--card-ornament);
-}
 .card-art {
   position: absolute;
-  top: 15%;
-  left: 16%;
-  width: 68%;
-  height: 55%;
+  top: 13%;
+  left: 18%;
+  width: 64%;
+  height: 48%;
   color: var(--card-ink);
 }
-.art-frame,
-.art-filigree {
-  stroke: var(--card-ornament);
+.art-paper {
+  fill: var(--card-paper);
 }
-.art-frame {
-  opacity: 0.6;
+.art-tone {
+  fill: var(--card-tone);
 }
-.art-filigree {
-  opacity: 0.8;
+.art-solid {
+  fill: currentColor;
 }
-.art-cobalt {
+.art-accent {
   stroke: var(--card-accent);
+}
+.art-hatch {
+  stroke-width: 0.7;
+}
+.art-ground {
+  stroke: var(--card-ornament);
+  stroke-width: 0.7;
+  opacity: 0.6;
 }
 .card-face-name {
   position: absolute;
-  left: 17%;
-  right: 17%;
+  left: 14%;
+  right: 14%;
   bottom: 23%;
-  font-size: clamp(10px, 5cqw, 15px);
-  font-weight: 600;
-  line-height: 1.25;
+  font-size: clamp(14px, 7cqw, 21px);
+  font-weight: 500;
+  line-height: 1.18;
   letter-spacing: -0.03em;
   text-align: center;
 }
 .card-theme {
   position: absolute;
   bottom: 13.5%;
-  left: 19%;
-  right: 19%;
-  font-size: clamp(8px, 3.6cqw, 11px);
+  left: 17%;
+  right: 17%;
+  font-size: clamp(10px, 3.9cqw, 12px);
   text-align: center;
   line-height: 1.45;
   color: var(--card-muted);
-}
-.card-series {
-  position: absolute;
-  bottom: 24px;
-  left: 30%;
-  right: 30%;
-  text-align: center;
-  color: var(--card-ornament);
-  font-size: clamp(6px, 2.6cqw, 8px);
 }
 .card-back {
   text-align: center;
   background-color: var(--card-back);
   color: var(--card-ink);
-  transform: rotateY(180deg) translateZ(0.5px);
+  transform: rotateY(180deg) translateZ(0.7px);
   padding: 10% 11%;
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--card-ornament);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cpath d='m30 3 27 27-27 27L3 30ZM30 12l18 18-18 18-18-18Z' fill='none' stroke='%23c8ad82' opacity='.055' stroke-width='.6'/%3E%3C/svg%3E");
+  justify-content: center;
+  border: 1px solid var(--card-paper-line);
 }
 .card-back .card-engraving {
-  border-color: var(--card-ornament);
+  border-color: var(--card-paper-line);
 }
 .card-back-symbol {
-  position: absolute;
-  right: 11%;
-  top: 9%;
+  align-self: center;
   font-family: Georgia, serif;
-  font-size: clamp(17px, 9cqw, 26px);
+  font-size: 16px;
   color: var(--card-ornament);
   line-height: 1;
-}
-.card-back-kicker {
-  color: var(--card-ornament);
-  font-size: clamp(6px, 2.6cqw, 8px);
-  padding-top: 3px;
-  max-width: 80%;
-  letter-spacing: 0.02em;
+  margin-bottom: 12px;
 }
 .card-back-title {
   align-self: center;
@@ -272,7 +250,7 @@
   letter-spacing: -0.035em;
   line-height: 1.2;
   font-weight: 500;
-  margin-top: 9%;
+  margin-top: 0;
   max-width: 90%;
 }
 .card-explanation {
@@ -298,12 +276,6 @@
 }
 .card-tech {
   color: var(--card-accent);
-}
-.card-return {
-  margin-top: auto;
-  padding-top: 7%;
-  font-size: clamp(6px, 2.6cqw, 8px);
-  color: var(--card-ornament);
 }
 .playing-deck-footer {
   border-top: 1px solid var(--line);

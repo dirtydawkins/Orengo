@@ -1,4 +1,4 @@
-// Original, code-drawn artwork. All six designs share an engraved line language.
+// Original object studies drawn for this deck. No stock icons or generated images.
 export function CardArtwork({ index }: { index: number }) {
   return (
     <svg
@@ -8,106 +8,182 @@ export function CardArtwork({ index }: { index: number }) {
       aria-hidden="true"
       focusable="false"
     >
-      <g className="art-frame" strokeWidth=".7">
-        <path d="M90 8 166 100 90 192 14 100Z" />
-        <path d="M90 17 158 100 90 183 22 100Z" />
-        <path d="M90 0v14M90 186v14M0 100h20M160 100h20" />
-        <circle cx="90" cy="100" r="70" />
-      </g>
       <g
         stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
+        strokeWidth="1.5"
         strokeLinejoin="round"
+        strokeLinecap="round"
       >
         {index === 0 && (
           <>
-            <path d="M90 35v24M90 141v24M42 100H25M138 100h17" />
-            <path d="M52 78V66l38-18 38 18v12M52 122v12l38 18 38-18v-12" />
-            <ellipse cx="90" cy="76" rx="34" ry="12" />
-            <path d="M56 76v46c0 16 68 16 68 0V76M56 91c0 16 68 16 68 0M56 107c0 16 68 16 68 0" />
-            <path d="M42 66 27 52M138 66l15-14M42 134l-15 14M138 134l15 14" />
-            <circle cx="24" cy="49" r="5" />
-            <circle cx="156" cy="49" r="5" />
-            <circle cx="24" cy="151" r="5" />
-            <circle cx="156" cy="151" r="5" />
-            <path className="art-cobalt" d="m78 109 8 8 17-20" />
+            {/* An index cabinet, with real enclosing sides and two record drawers. */}
+            <path className="art-tone" d="m40 68 67-23 36 26-68 24Z" />
+            <path className="art-solid" d="m75 95 68-24v75l-68 25Z" />
+            <path className="art-paper" d="m40 68 35 27v76l-35-28Z" />
+            <path
+              className="art-paper"
+              d="m83 94 51-18v27l-51 18Zm0 32 51-18v29l-51 18Z"
+            />
+            <path d="m99 94 19-7v8l-19 7Zm0 33 19-7v8l-19 7Z" />
+            <path
+              d="m49 80 17 13m-17-7 17 13m-17-7 17 13m-17-7 17 13m-17-7 17 13"
+              className="art-hatch"
+            />
+            <path
+              className="art-paper"
+              d="m53 66 1-26 13-5 6 4 35-12 18 13-1 16-50 18Z"
+            />
+            <path
+              d="m61 47 38-13m-38 20 46-16m-38 19 43-14"
+              className="art-hatch"
+            />
+            <path className="art-accent" d="m90 144 5 3 10-12" />
+            <path className="art-ground" d="m42 159 32 23 70-26m-60 28 48-17" />
           </>
         )}
         {index === 1 && (
           <>
-            <path d="m61 48-7-22 23 13 13-23 13 23 23-13-7 22ZM63 55h54M64 145h52l8 24-21-12-13 23-13-23-21 12Z" />
-            <path d="m90 63 35 37-35 37-35-37Z" />
-            <path d="m90 77 22 23-22 23-22-23Z" />
-            <path d="M31 79h22M127 79h22M31 121h22M127 121h22" />
-            <circle cx="28" cy="79" r="4" />
-            <circle cx="152" cy="79" r="4" />
-            <circle cx="28" cy="121" r="4" />
-            <circle cx="152" cy="121" r="4" />
+            {/* Two paper receipts and a single-event stamp. No invented figures. */}
             <path
-              className="art-cobalt"
-              d="m83 99 6 6 12-13M33 100h12m-5-5 5 5-5 5M147 100h-12m5-5-5 5 5 5"
+              className="art-tone"
+              d="m47 45 63-12 22 125-8-3-6 6-8-3-6 6-8-3-6 6-8-3-6 6Z"
             />
+            <path
+              className="art-paper"
+              d="m57 30 69 9-15 132-7-5-7 3-6-5-7 3-6-5-7 3-6-5-8 3Z"
+            />
+            <path d="m70 49 42 5m-44 8 25 3m-27 12 42 5" />
+            <path
+              d="m65 90 25 3m8 1 8 1m-43 10 25 3m8 1 8 1m-43 10 25 3m8 1 8 1"
+              className="art-hatch"
+            />
+            <path d="m63 133 37 5m-38 4 37 5" />
+            <circle className="art-accent art-paper" cx="119" cy="121" r="22" />
+            <circle className="art-accent" cx="119" cy="121" r="17" />
+            <path
+              className="art-accent"
+              d="m110 121 6 6 12-13"
+              strokeWidth="2.2"
+            />
+            <path d="m43 71 7 57m-11-41 6 42" className="art-hatch" />
+            <path className="art-ground" d="m41 178 68 8 30-10m-85 9 49 6" />
           </>
         )}
         {index === 2 && (
           <>
-            <path d="m62 42-7-18 23 13 12-20 12 20 23-13-7 18ZM64 49h52" />
-            <path d="M90 63c-15-19-34-2-25 12l25 24 25-24c9-14-10-31-25-12Z" />
-            <path d="M90 102v17M70 134H48v-34H29M110 134h22v-34h19M90 152v23M48 134v29M132 134v29" />
-            <circle cx="90" cy="135" r="17" />
-            <path className="art-cobalt" d="M90 125v11l8 5" />
-            <circle cx="48" cy="170" r="6" />
-            <circle cx="132" cy="170" r="6" />
-            <circle cx="24" cy="100" r="5" />
-            <circle cx="156" cy="100" r="5" />
-            <path d="M43 64v13H29M137 64v13h14" />
+            {/* A mechanical alarm clock and a folded reminder. */}
+            <path
+              className="art-tone"
+              d="m47 51-8-9c-10-12 7-27 19-18l12 9Zm58-18 12-9c12-9 29 6 19 18l-8 9Z"
+            />
+            <path d="m46 45 7 9m66 0 8-9M82 25h13m-7 0v11" />
+            <circle className="art-tone" cx="87" cy="94" r="54" />
+            <circle className="art-paper" cx="84" cy="91" r="49" />
+            <circle cx="84" cy="91" r="43" />
+            <path d="M84 55v5m0 62v5m-36-36h5m62 0h5M60 67l3 3m42 42 3 3m0-48-3 3m-42 42-3 3" />
+            <path d="M84 64v27l19 11" strokeWidth="2.3" />
+            <circle className="art-solid" cx="84" cy="91" r="3" />
+            <path d="m52 137-8 17h10l10-12m44-3 9 15h11l-13-23" />
+            <path className="art-paper" d="m118 112 34 8-10 43-34-8Z" />
+            <path
+              className="art-accent"
+              d="m122 132 5 7 12-12"
+              strokeWidth="2"
+            />
+            <path d="m117 147 17 4" className="art-hatch" />
+            <path className="art-ground" d="M37 169h104m-91 6h73" />
           </>
         )}
         {index === 3 && (
           <>
-            <path d="m90 33 49 21v44c0 32-24 55-49 70-25-15-49-38-49-70V54Z" />
-            <path d="m90 43 39 17v38c0 26-19 47-39 60-20-13-39-34-39-60V60Z" />
-            <rect x="69" y="84" width="42" height="37" rx="3" />
-            <path d="M77 84V72a13 13 0 0 1 26 0v12" />
-            <circle className="art-cobalt" cx="90" cy="100" r="4" />
-            <path className="art-cobalt" d="M90 104v7" />
-            <path d="M24 70h10M146 70h10M26 130h12M142 130h12M90 18v8M90 174v8" />
-            <path d="m16 100 8-8 8 8-8 8Zm132 0 8-8 8 8-8 8Z" />
+            {/* A solid padlock and cut key, rather than a floating shield. */}
+            <path
+              className="art-tone"
+              d="M51 91V62a36 36 0 0 1 72 0v29h-13V62a23 23 0 0 0-46 0v29Z"
+            />
+            <path d="M58 81V61a29 29 0 0 1 58 0v20" className="art-hatch" />
+            <path className="art-solid" d="m48 91 12-8h78v62l-12 9H48Z" />
+            <rect
+              className="art-paper"
+              x="44"
+              y="89"
+              width="82"
+              height="65"
+              rx="5"
+            />
+            <rect
+              x="50"
+              y="95"
+              width="70"
+              height="53"
+              rx="2"
+              className="art-hatch"
+            />
+            <path
+              className="art-accent art-tone"
+              d="M91 112a7 7 0 1 0-11 6l-2 13h15l-3-13a7 7 0 0 0 1-6Z"
+            />
+            <path d="M108 106v29m4-24v24m4-19v19" className="art-hatch" />
+            <g transform="rotate(-29 121 155)">
+              <circle className="art-paper" cx="120" cy="144" r="13" />
+              <circle cx="120" cy="144" r="6" />
+              <path
+                className="art-paper"
+                d="M116 157v27h15v-7h-7v-6h6v-7h-6v-7Z"
+              />
+            </g>
+            <path className="art-ground" d="M37 169h68m-56 5h43" />
           </>
         )}
         {index === 4 && (
           <>
-            <path d="M51 79c-3-27-17-36-26-35 18-19 36-10 42 9 1-23 12-36 23-42 11 6 22 19 23 42 6-19 24-28 42-9-9-1-23 8-26 35Z" />
-            <circle cx="22" cy="43" r="5" />
-            <circle cx="90" cy="13" r="5" />
-            <circle cx="158" cy="43" r="5" />
-            <path d="M53 84h74M57 89c0 39 15 50 33 59 18-9 33-20 33-59" />
-            <path d="m66 104 12-6 7 13M114 104l-12-6-7 13M72 122q18 21 36 0" />
-            <path d="m90 153-17 20 17 18 17-18ZM49 143l-18 18 13 15M131 143l18 18-13 15" />
+            {/* A stopwatch with a proper dial and a short timing arc. */}
+            <path className="art-tone" d="M78 27h22v13H78Z" />
+            <path d="M82 22h14v5m-17 7h20m-18-4v6m4-6v6m5-6v6m5-6v6m21 19 9-11 8 7-8 11" />
+            <circle className="art-tone" cx="94" cy="110" r="56" />
+            <circle className="art-paper" cx="88" cy="106" r="56" />
+            <circle cx="88" cy="106" r="48" />
+            <path d="M88 64v7m21-1-3 6m18 9-6 3m12 18h-7m1 21-6-3m-9 18-3-6m-18 12v-7m-21 1 3-6m-18-9 6-3m-12-18h7m-1-21 6 3m9-18 3 6" />
             <path
-              className="art-cobalt"
-              d="m41 130 18-15 15 6 20-34 15 5 23-28M124 64h8v8"
+              className="art-accent"
+              d="M88 64a42 42 0 0 1 36 21"
+              strokeWidth="4"
             />
+            <path d="m88 106 28-22m-28 22-7 6" strokeWidth="2.4" />
+            <circle className="art-solid" cx="88" cy="106" r="4" />
+            <circle cx="88" cy="129" r="10" />
+            <path d="M88 123v7l4 2" strokeWidth="1" />
+            <path className="art-ground" d="M41 177h105m-88 6h69" />
           </>
         )}
         {index === 5 && (
           <>
-            <path d="M70 41c-10-16-29-5-26 8-16-4-19 19-5 21h102c14-2 11-25-5-21 3-13-16-24-26-8-4-20-36-20-40 0Z" />
-            <path className="art-cobalt" d="M90 60v25m-7-8 7 8 7-8" />
-            <rect x="48" y="94" width="84" height="22" rx="2" />
-            <rect x="48" y="123" width="84" height="22" rx="2" />
-            <path d="M64 101h26M64 130h26M59 155h62M90 146v24M60 177h60" />
-            <circle cx="114" cy="105" r="3" />
-            <circle cx="114" cy="134" r="3" />
-            <path d="M30 94v51M150 94v51M23 104h14M143 135h14" />
-            <path d="m84 177 6-6 6 6-6 6Z" />
+            {/* A bolted rack case: vents, a recessed face and one status lamp. */}
+            <path className="art-tone" d="m39 48 70-17 37 26-71 18Z" />
+            <path className="art-solid" d="m75 75 71-18v91l-71 21Z" />
+            <path className="art-paper" d="m39 48 36 27v94l-36-29Z" />
+            <path
+              className="art-paper"
+              d="m82 81 56-15v22l-56 16Zm0 31 56-16v22l-56 17Zm0 32 56-17v21l-56 17Z"
+            />
+            <path
+              d="m91 84 31-8m-31 13 31-8m-31 34 31-9m-31 14 31-9m-31 35 31-9m-31 14 31-9"
+              className="art-hatch"
+            />
+            <path d="M47 73v53m5-49v53m5-49v53m5-49v53" className="art-hatch" />
+            <path
+              className="art-accent"
+              d="m130 78 3-1v5l-3 1Z"
+              strokeWidth="2"
+            />
+            <path d="m130 109 3-1m-3 32 3-1" />
+            <path
+              d="m80 78 2-1m57-13 2-1m-61 81 2-1m57-16 2-1"
+              strokeWidth="2"
+            />
+            <path className="art-ground" d="m39 155 35 27 70-21m-62 25 49-15" />
           </>
         )}
-      </g>
-      <g className="art-filigree" strokeWidth=".7">
-        <path d="M42 36C17 47 9 67 8 84M138 36c25 11 33 31 34 48M42 164c-25-11-33-31-34-48M138 164c25-11 33-31 34-48" />
-        <path d="M90 4 86 8l4 4 4-4ZM90 188l-4 4 4 4 4-4Z" />
       </g>
     </svg>
   );
