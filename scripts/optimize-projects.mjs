@@ -2,7 +2,7 @@ import sharp from "sharp";
 import path from "node:path";
 
 const root = path.resolve("public/projects");
-for (const name of ["lockd-home", "lockd-categories"]) {
+for (const name of ["lockd-home-20261115", "lockd-categories-20261115"]) {
   const source = path.join(root, `${name}.jpg`);
   await Promise.all(
     [640, 960, 1425].map((width) =>

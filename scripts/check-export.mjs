@@ -139,8 +139,8 @@ const pdf = await readFile(
 assert.equal(pdf.subarray(0, 5).toString(), "%PDF-");
 for (const image of [
   "images/lameck-orengo.jpg",
-  "projects/lockd-home.jpg",
-  "projects/lockd-categories.jpg",
+  "projects/lockd-home-20261115.jpg",
+  "projects/lockd-categories-20261115.jpg",
 ]) {
   const bytes = await readFile(path.join(root, image));
   assert.equal(bytes[0], 255);

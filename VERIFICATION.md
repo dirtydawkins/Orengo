@@ -1,6 +1,14 @@
 # Verification
 
-## Latest revision: SVG arrows and dropdown motion
+## Latest revision: fresh LOCKD desktop captures
+
+- Captured the actual live homepage and rental-category section through Firecrawl's isolated browser. Both PNGs are 1425×891 desktop viewports and were visually inspected. Optional cookies were rejected, the public location was set to Anywhere, and no account was signed in.
+- The images show the current wordmark and loaded site photographs. The second capture is the category section, not another copy of the homepage. Capture provenance and original-image hashes are recorded in `docs/LOCKD_SCREENSHOTS.md`.
+- The portfolio uses revisioned JPEG filenames plus 640, 960 and 1425px WebP variants. These same desktop captures are used on phones and larger screens. Gallery sizing, theme behavior, navigation, portrait and card design remain unchanged.
+- Production build and TypeScript passed. All five project/image tests passed, including the actual capture and responsive-image dimensions. Export validation passed for 12 HTML pages and 371 internal references.
+- The earlier screenshot-capture blocker below has been resolved for this refresh using the Firecrawl connection. Earlier browser interaction and accessibility checks below retain their original scope.
+
+## SVG arrows and dropdown motion
 
 Checked on 5 November 2026.
 

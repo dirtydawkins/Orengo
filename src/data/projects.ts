@@ -27,21 +27,21 @@ export const projects: PortfolioProject[] = [
     images: [
       {
         id: "home",
-        src: "/projects/lockd-home.jpg",
-        alt: "The genuine LOCKD homepage, with rental search and category navigation.",
+        src: "/projects/lockd-home-20261115.jpg",
+        alt: "The LOCKD desktop homepage with its burgundy wordmark, rental navigation and SUV photograph.",
         caption: "Homepage",
         width: 1425,
         height: 891,
-        sources: responsive("lockd-home"),
+        sources: responsive("lockd-home-20261115"),
       },
       {
         id: "categories",
-        src: "/projects/lockd-categories.jpg",
-        alt: "Rental discovery and categories on the actual LOCKD website.",
-        caption: "Rental discovery",
+        src: "/projects/lockd-categories-20261115.jpg",
+        alt: "The LOCKD desktop category view showing stays, cars, gaming, technology and experiences.",
+        caption: "Rental categories",
         width: 1425,
         height: 891,
-        sources: responsive("lockd-categories"),
+        sources: responsive("lockd-categories-20261115"),
       },
     ],
     caseStudy: {
