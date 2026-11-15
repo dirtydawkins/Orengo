@@ -264,7 +264,8 @@ export function Header() {
     if (!dialog.current || dialog.current.open) return;
     previousOverflow.current = document.body.style.overflow;
     setMenuOpen(true);
-    dialog.current?.showModal();
+    dialog.current.showModal();
+    dialog.current.scrollTop = 0;
     document.body.style.overflow = "hidden";
   }
   function revealNavigation() {
