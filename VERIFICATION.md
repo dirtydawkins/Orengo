@@ -1,6 +1,14 @@
 # Verification
 
-## Latest revision: fresh LOCKD desktop captures
+## Latest revision: capsule and menu refinement
+
+- Updated the existing capsule with one custom inline SVG LO monogram, a softly edged circular bezel, a restrained solid sapphire-navy palette and theme-aware shadows. The lettermark was rendered and inspected before inclusion; no raster logo or icon font was introduced.
+- Active links use the existing ice-blue accent, the appearance control has a quiet divider, and the ivory contact button retains its existing behavior. The mobile logo target is 44px. Menu controls use a visible theme-aware focus outline.
+- The mobile menu opens with a 0.7s downward reveal and closes with a matching 0.7s upward reveal. Closing captures the current clipped position when opening is interrupted. The existing native dialog stays modal until the exit completes; Close, Escape and outside-tap dismissal share the same animation. Scroll locking and focus restoration remain, with an exit-completion timeout as a fallback. Reduced motion bypasses both animations.
+- All 19 automated tests passed, including theme/contrast checks for the new logo surface in both palettes. Production build and TypeScript passed; export validation passed for 12 HTML pages and 371 internal references.
+- This is one update to the existing portfolio. LOCKD screenshots, portrait, cards, page content, section layouts and light-first preferences were not changed.
+
+## Fresh LOCKD desktop captures
 
 - Captured the actual live homepage and rental-category section through Firecrawl's isolated browser. Both PNGs are 1425×891 desktop viewports and were visually inspected. Optional cookies were rejected, the public location was set to Anywhere, and no account was signed in.
 - The images show the current wordmark and loaded site photographs. The second capture is the category section, not another copy of the homepage. Capture provenance and original-image hashes are recorded in `docs/LOCKD_SCREENSHOTS.md`.

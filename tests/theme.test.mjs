@@ -61,7 +61,12 @@ for (const [theme, palette] of Object.entries({
           contrast(palette[foreground], palette[background]) >= 4.5,
           `${foreground} on ${background}`,
         );
-    for (const background of ["--nav-bg", "--nav-panel", "--nav-selected"])
+    for (const background of [
+      "--nav-bg",
+      "--nav-panel",
+      "--nav-selected",
+      "--nav-logo-bg",
+    ])
       for (const foreground of ["--nav-text", "--nav-muted", "--nav-highlight"])
         assert.ok(
           contrast(palette[foreground], palette[background]) >= 4.5,

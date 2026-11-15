@@ -16,15 +16,16 @@
   background: var(--nav-bg);
   color: var(--nav-text);
   box-shadow:
-    inset 0 1px 0 #ffffff0f,
-    0 8px 26px #07172e26,
-    0 2px 4px #00000020;
+    inset 0 1px 0 #ffffff18,
+    inset 0 -1px 0 #00000024,
+    var(--nav-shadow);
   transition:
     height 0.3s var(--ease),
     padding 0.3s var(--ease),
     transform 0.3s var(--ease),
     background-color 0.32s ease,
-    border-color 0.32s ease;
+    border-color 0.32s ease,
+    box-shadow 0.32s ease;
   isolation: isolate;
 }
 .capsule-identity {
@@ -43,22 +44,31 @@
   flex: none;
   border: 1px solid var(--nav-logo-border);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 17px;
-  letter-spacing: -0.1em;
-  font-weight: 500;
-  padding-right: 2px;
+  display: grid;
+  place-items: center;
+  background: var(--nav-logo-bg);
+  color: var(--nav-text);
+  box-shadow:
+    inset 0 1px 0 #ffffff16,
+    0 1px 2px #00000020;
   transition:
     width 0.3s,
-    height 0.3s;
+    height 0.3s,
+    border-color 0.2s,
+    background-color 0.2s;
 }
-.lo-monogram > span {
-  font-size: 15px;
-  align-self: center;
-  translate: -1px 3px;
-  color: var(--nav-highlight);
+.lo-monogram:hover {
+  border-color: var(--nav-highlight);
+  background: var(--nav-hover);
+}
+.lo-mark {
+  display: block;
+  width: 62%;
+  height: 62%;
+}
+.lo-mark-o {
+  stroke: var(--nav-highlight);
+  transition: stroke 0.32s ease;
 }
 .is-compact .lo-monogram {
   height: 42px;
@@ -76,11 +86,16 @@
   padding: 10px 17px;
   border-radius: 999px;
   font-size: 12px;
-  transition: background 0.18s;
+  transition:
+    background 0.18s,
+    color 0.18s;
   color: var(--nav-text);
 }
 .capsule-links > a:hover {
   background: var(--nav-hover);
+}
+.capsule-links > a[aria-current] {
+  color: var(--nav-highlight);
 }
 .active-pill {
   position: absolute;
@@ -89,11 +104,15 @@
   left: 0;
   border-radius: 999px;
   background: var(--nav-selected);
+  border: 1px solid var(--nav-line);
+  box-shadow: inset 0 1px 0 #ffffff0c;
   opacity: 0;
   transition:
     transform 0.26s var(--ease),
     width 0.26s var(--ease),
-    opacity 0.2s;
+    opacity 0.2s,
+    background-color 0.32s ease,
+    border-color 0.32s ease;
   pointer-events: none;
 }
 .capsule-cta {
@@ -107,8 +126,13 @@
   border-radius: 999px;
   font-size: 12px;
   font-weight: 600;
+  box-shadow:
+    inset 0 1px 0 #ffffffa6,
+    0 1px 3px #00000016;
   white-space: nowrap;
-  transition: background 0.18s;
+  transition:
+    background-color 0.18s,
+    color 0.32s ease;
 }
 .capsule-cta:hover {
   background: #dce8fa;
@@ -128,11 +152,19 @@
   align-items: center;
   justify-content: center;
   gap: 7px;
-  width: 66px;
+  width: 78px;
   height: 44px;
-  padding: 0;
+  padding: 0 0 0 12px;
+  border-left: 1px solid var(--nav-subline);
+  color: var(--nav-muted);
   flex: none;
   cursor: pointer;
+  transition:
+    color 0.18s,
+    border-color 0.32s ease;
+}
+.capsule-theme:hover {
+  color: var(--nav-text);
 }
 .menu-system-theme {
   display: flex;
@@ -162,6 +194,11 @@
 .capsule button:focus-visible {
   outline-color: #a8c3ff;
 }
+.capsule-menu a:focus-visible,
+.capsule-menu button:focus-visible {
+  outline-color: var(--nav-highlight);
+  outline-offset: 3px;
+}
 .capsule-menu {
   position: fixed;
   top: calc(108px + env(safe-area-inset-top, 0px));
@@ -182,14 +219,30 @@
   background: #0b0d1077;
 }
 .capsule-menu[open] {
-  animation: menu-slide 0.7s var(--ease);
+  animation: menu-slide 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transform-origin: top center;
+}
+.capsule-menu[open][data-closing="true"] {
+  animation: menu-slide-up 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 @keyframes menu-slide {
   from {
-    translate: 0 -10px;
+    translate: 0 -12px;
+    clip-path: inset(0 0 100% 0 round 20px);
   }
   to {
     translate: 0 0;
+    clip-path: inset(0 0 0 0 round 20px);
+  }
+}
+@keyframes menu-slide-up {
+  from {
+    translate: var(--menu-close-translate, 0 0);
+    clip-path: var(--menu-close-clip, inset(0 0 0 0 round 20px));
+  }
+  to {
+    translate: 0 -12px;
+    clip-path: inset(0 0 100% 0 round 20px);
   }
 }
 .capsule-menu-top {
@@ -294,9 +347,8 @@
   }
   .lo-monogram,
   .is-compact .lo-monogram {
-    height: 42px;
-    width: 42px;
-    font-size: 16px;
+    height: 44px;
+    width: 44px;
   }
   .capsule-links,
   .capsule-theme {
@@ -307,6 +359,7 @@
     flex: 1;
     font-size: 12px;
     letter-spacing: -0.02em;
+    font-weight: 500;
     color: var(--nav-text);
   }
   .capsule-cta {

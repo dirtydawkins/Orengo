@@ -42,6 +42,17 @@ export function Header() {
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const backdropPointer = useRef(false);
+  const menuClosing = useRef(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const previousOverflow = useRef<string | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimer.current !== null) clearTimeout(closeTimer.current);
+      if (previousOverflow.current !== null)
+        document.body.style.overflow = previousOverflow.current;
+    };
+  }, []);
 
   useEffect(() => {
     try {
@@ -204,13 +215,54 @@ export function Header() {
   function toggle() {
     chooseTheme(theme === "dark" ? "light" : "dark");
   }
-  function close() {
+  function finishClose() {
+    if (closeTimer.current !== null) clearTimeout(closeTimer.current);
+    closeTimer.current = null;
     dialog.current?.close();
+  }
+  function resetMenu() {
+    if (closeTimer.current !== null) clearTimeout(closeTimer.current);
+    closeTimer.current = null;
+    menuClosing.current = false;
+    if (dialog.current) {
+      delete dialog.current.dataset.closing;
+      dialog.current.style.removeProperty("--menu-close-clip");
+      dialog.current.style.removeProperty("--menu-close-translate");
+    }
     setMenuOpen(false);
-    document.body.style.overflow = "";
+    if (previousOverflow.current !== null) {
+      document.body.style.overflow = previousOverflow.current;
+      previousOverflow.current = null;
+    }
     trigger.current?.focus();
   }
+  function close() {
+    const panel = dialog.current;
+    if (!panel?.open || menuClosing.current) return;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      finishClose();
+      return;
+    }
+    // Reverse from the visible position, even if opening is still in progress.
+    const current = getComputedStyle(panel);
+    panel.style.setProperty(
+      "--menu-close-clip",
+      current.clipPath === "none"
+        ? "inset(0 0 0 0 round 20px)"
+        : current.clipPath,
+    );
+    panel.style.setProperty(
+      "--menu-close-translate",
+      current.translate === "none" ? "0 0" : current.translate,
+    );
+    menuClosing.current = true;
+    panel.dataset.closing = "true";
+    // Keep the modal and focus trap until the exit has actually completed.
+    closeTimer.current = setTimeout(finishClose, 850);
+  }
   function open() {
+    if (!dialog.current || dialog.current.open) return;
+    previousOverflow.current = document.body.style.overflow;
     setMenuOpen(true);
     dialog.current?.showModal();
     document.body.style.overflow = "hidden";
@@ -243,7 +295,28 @@ export function Header() {
           className="lo-monogram"
           aria-label="Lameck Orengo, back to top"
         >
-          L<span>O</span>
+          <svg
+            className="lo-mark"
+            viewBox="0 0 32 32"
+            fill="none"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              d="M7 6.5V24h10"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinejoin="round"
+            />
+            <ellipse
+              className="lo-mark-o"
+              cx="21"
+              cy="18"
+              rx="7"
+              ry="8"
+              strokeWidth="2"
+            />
+          </svg>
         </Link>
         {!showContact ? (
           <span className="capsule-identity">Lameck Orengo</span>
@@ -331,10 +404,15 @@ export function Header() {
           event.preventDefault();
           close();
         }}
-        onClose={() => {
-          setMenuOpen(false);
-          document.body.style.overflow = "";
+        onAnimationEnd={(event) => {
+          if (
+            event.target === event.currentTarget &&
+            event.animationName === "menu-slide-up" &&
+            menuClosing.current
+          )
+            finishClose();
         }}
+        onClose={resetMenu}
       >
         <div className="capsule-menu-top">
           <span className="mono">Navigation</span>
