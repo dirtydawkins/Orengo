@@ -844,7 +844,7 @@ details[open] > summary > .expand-mark {
 .hero-actions .under-link {
   color: var(--accent);
 }
-.contact-alternatives a:hover {
+.contact-alternatives a:not(.channel-action):hover {
   text-decoration: underline;
   text-underline-offset: 5px;
 }

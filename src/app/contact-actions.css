@@ -10,7 +10,7 @@
   min-height: 44px;
   padding: 0;
   color: var(--accent);
-  border-bottom: 1px solid var(--control-line);
+  border-bottom: 1px solid transparent;
   text-decoration: none;
   transition:
     color 220ms ease,
@@ -43,24 +43,8 @@
   width: 17px;
   height: 17px;
 }
-.channel-action:is(:hover, :focus-visible) {
-  border-bottom-color: var(--accent);
-}
 .channel-action:is(:hover, :focus-visible) .channel-mark {
   transform: translate(2px, -1px);
-}
-.channel-action::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 -1px;
-  height: 1px;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 420ms cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-.channel-action:is(:hover, :focus-visible)::after {
-  transform: scaleX(1);
 }
 .button.channel-action-primary {
   min-height: 58px;
@@ -102,10 +86,6 @@
 }
 .button.channel-action-primary:is(:hover, :focus-visible) .channel-label {
   transform: translateX(1px);
-}
-.button.channel-action-primary::after,
-.capsule-menu .menu-whatsapp::after {
-  display: none;
 }
 .channel-action:active,
 .button.channel-action-primary:active {
@@ -162,7 +142,6 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .channel-action,
-  .channel-action::after,
   .channel-action .channel-label,
   .channel-action .channel-mark,
   .button.channel-action-primary {
