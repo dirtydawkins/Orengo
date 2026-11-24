@@ -1,7 +1,7 @@
 "use client";
 import { Disclosure } from "@/components/Disclosure";
 
-import { LinkArrow } from "@/components/LinkArrow";
+import { ChannelAction } from "@/components/ChannelAction";
 
 import { useState } from "react";
 import { site, whatsapp } from "@/data/portfolio";
@@ -93,25 +93,23 @@ export function ProjectConfigurator() {
         <p>{draft.message}</p>
       </Disclosure>
       <div className="enquiry-actions">
-        <a
-          className="button primary"
+        <ChannelAction
+          channel="whatsapp"
+          primary
           href={whatsapp(draft.message)}
           target="_blank"
           rel="noopener noreferrer"
           aria-describedby="enquiry-send-hint"
         >
-          Continue on WhatsApp{" "}
-          <span aria-hidden="true">
-            <LinkArrow />
-          </span>
-        </a>
+          Continue on WhatsApp
+        </ChannelAction>
         <div className="contact-alternatives">
-          <a href={email}>
-            Use email instead <LinkArrow />
-          </a>
-          <a href="tel:+254705370435">
-            Call me <LinkArrow />
-          </a>
+          <ChannelAction channel="email" href={email}>
+            Use email instead
+          </ChannelAction>
+          <ChannelAction channel="phone" href="tel:+254705370435">
+            Call me
+          </ChannelAction>
         </div>
         <p className="enquiry-hint" id="enquiry-send-hint">
           Your draft opens for you to review and send.

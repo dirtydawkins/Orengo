@@ -1,4 +1,5 @@
 import { LinkArrow } from "@/components/LinkArrow";
+import { ChannelAction } from "@/components/ChannelAction";
 import Link from "next/link";
 import { site, whatsapp } from "@/data/portfolio";
 export function SectionLabel({
@@ -24,24 +25,22 @@ export function ContactActions({
 }) {
   return (
     <div className="contact-action-set">
-      <a
-        className="button primary"
+      <ChannelAction
+        channel="whatsapp"
+        primary
         href={message ? whatsapp(message) : site.whatsapp}
         target="_blank"
         rel="noopener noreferrer"
       >
-        {label}{" "}
-        <span aria-hidden="true">
-          <LinkArrow />
-        </span>
-      </a>
+        {label}
+      </ChannelAction>
       <div className="contact-alternatives">
-        <a href={`mailto:${site.email}`}>
-          Send an email <LinkArrow />
-        </a>
-        <a href="tel:+254705370435">
-          Call me <LinkArrow />
-        </a>
+        <ChannelAction channel="email" href={`mailto:${site.email}`}>
+          Send an email
+        </ChannelAction>
+        <ChannelAction channel="phone" href="tel:+254705370435">
+          Call me
+        </ChannelAction>
       </div>
     </div>
   );
@@ -49,18 +48,22 @@ export function ContactActions({
 export function SocialLinks({ className = "" }: { className?: string }) {
   return (
     <nav className={`social-links ${className}`} aria-label="Social profiles">
-      <a href={site.github} target="_blank" rel="noopener noreferrer">
-        GitHub{" "}
-        <span aria-hidden="true">
-          <LinkArrow />
-        </span>
-      </a>
-      <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
-        LinkedIn{" "}
-        <span aria-hidden="true">
-          <LinkArrow />
-        </span>
-      </a>
+      <ChannelAction
+        channel="github"
+        href={site.github}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub
+      </ChannelAction>
+      <ChannelAction
+        channel="linkedin"
+        href={site.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn
+      </ChannelAction>
     </nav>
   );
 }

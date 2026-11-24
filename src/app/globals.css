@@ -3,6 +3,7 @@
 @import "./navigation.css";
 @import "./interactions.css";
 @import "./projects.css";
+@import "./contact-actions.css";
 @font-face {
   font-family: Manrope;
   src: url("/fonts/manrope-latin-variable.woff2") format("woff2");

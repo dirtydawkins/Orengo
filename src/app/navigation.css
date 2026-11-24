@@ -121,7 +121,7 @@
   min-height: 46px;
   display: flex;
   align-items: center;
-  gap: 25px;
+  justify-content: center;
   padding: 0 22px;
   border-radius: 999px;
   font-size: 12px;
@@ -136,13 +136,6 @@
 }
 .capsule-cta:hover {
   background: #dce8fa;
-}
-.capsule-cta > span {
-  font-size: 17px;
-  transition: translate 0.18s;
-}
-.capsule-cta:hover > span {
-  translate: 2px -2px;
 }
 .is-compact .capsule-cta {
   min-height: 42px;
@@ -373,7 +366,6 @@
   }
   .capsule-cta {
     min-height: 44px;
-    gap: 18px;
     padding: 0 18px;
     font-size: 11px;
     margin-left: auto;
@@ -426,7 +418,6 @@
   }
   .capsule-cta {
     padding-inline: 14px;
-    gap: 10px;
   }
   .capsule-menu-toggle {
     padding-right: 5px;

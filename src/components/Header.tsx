@@ -1,5 +1,6 @@
 "use client";
 import { LinkArrow } from "@/components/LinkArrow";
+import { ChannelAction } from "@/components/ChannelAction";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -354,10 +355,7 @@ export function Header() {
             rel="noopener noreferrer"
             aria-label="Contact Lameck on WhatsApp (opens in a new tab)"
           >
-            Contact{" "}
-            <span aria-hidden="true">
-              <LinkArrow />
-            </span>
+            Contact
           </a>
         ) : null}
         <button
@@ -456,14 +454,15 @@ export function Header() {
           Use device appearance{" "}
           <span>{themePreference === "system" ? "On" : "Off"}</span>
         </button>
-        <a
+        <ChannelAction
+          channel="whatsapp"
           className="menu-whatsapp"
           href={site.whatsapp}
           target="_blank"
           rel="noopener noreferrer"
         >
-          Let’s talk on WhatsApp <LinkArrow />
-        </a>
+          Let’s talk on WhatsApp
+        </ChannelAction>
       </dialog>
     </>
   );

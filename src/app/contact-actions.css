@@ -1,0 +1,161 @@
+.channel-action,
+.social-links .channel-action,
+.contact-alternatives .channel-action {
+  display: inline-flex;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-shrink: 0;
+  gap: 0;
+  min-height: 44px;
+  padding: 0;
+  color: var(--accent);
+  border-bottom: 1px solid var(--control-line);
+  text-decoration: none;
+  transition:
+    color 220ms ease,
+    border-color 220ms ease,
+    transform 220ms ease;
+}
+.channel-action .channel-label {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px 10px 0;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  translate: none;
+}
+.channel-action .channel-mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  align-self: stretch;
+  flex: 0 0 40px;
+  border-left: 1px solid var(--line);
+  background: transparent;
+  translate: none;
+  transition:
+    background-color 220ms ease,
+    color 220ms ease,
+    border-color 220ms ease;
+}
+.channel-action .channel-mark svg {
+  display: block;
+  width: 17px;
+  height: 17px;
+}
+.channel-action:is(:hover, :focus-visible) {
+  border-bottom-color: var(--accent);
+}
+.channel-action:is(:hover, :focus-visible) .channel-mark {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border-left-color: var(--accent);
+}
+.button.channel-action-primary {
+  min-height: 58px;
+  gap: 0;
+  padding: 0;
+  color: #fff;
+  background: var(--cobalt);
+  border: 1px solid #ffffff16;
+  box-shadow:
+    inset 0 1px 0 #ffffff16,
+    0 2px 3px #0b14260a;
+  transition:
+    background-color 240ms ease,
+    transform 240ms ease,
+    box-shadow 240ms ease;
+}
+.button.channel-action-primary .channel-label {
+  padding: 15px 22px;
+  font-size: inherit;
+  font-weight: 600;
+}
+.button.channel-action-primary .channel-mark {
+  flex-basis: 58px;
+  background: #00000014;
+  border-left: 1px solid #ffffff30;
+  box-shadow: inset 1px 0 0 #0000000a;
+}
+.button.channel-action-primary .channel-mark svg {
+  width: 24px;
+  height: 24px;
+}
+.button.channel-action-primary:is(:hover, :focus-visible) {
+  background: #184bac;
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 #ffffff24,
+    0 4px 10px #0b142614;
+}
+.button.channel-action-primary:is(:hover, :focus-visible) .channel-mark {
+  background: #f2eee6;
+  color: #184bac;
+  border-left-color: #f2eee6;
+}
+.channel-action:active,
+.button.channel-action-primary:active {
+  transform: translateY(1px);
+}
+.contact-alternatives:has(.channel-action) {
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+.social-links:has(.channel-action) {
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+.contact-bottom:has(.channel-action) {
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.contact-bottom .social-links:has(.channel-action) {
+  flex-shrink: 0;
+}
+.capsule-menu .menu-whatsapp.channel-action {
+  display: flex;
+  width: 100%;
+  min-height: 52px;
+  padding: 0;
+  border-top: 1px solid var(--nav-subline);
+  border-bottom: 0;
+  color: var(--nav-text);
+}
+.capsule-menu .menu-whatsapp .channel-label {
+  padding-block: 14px;
+}
+.capsule-menu .menu-whatsapp .channel-mark {
+  flex-basis: 44px;
+  border-left: 0;
+  color: var(--nav-highlight);
+}
+.capsule-menu .menu-whatsapp .channel-mark svg {
+  width: 22px;
+  height: 22px;
+}
+.capsule-menu .menu-whatsapp:is(:hover, :focus-visible) .channel-mark {
+  background: var(--nav-selected);
+}
+@media (max-width: 760px) {
+  .button.channel-action-primary .channel-label {
+    padding: 13px 16px;
+  }
+  .button.channel-action-primary .channel-mark {
+    flex-basis: 52px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .channel-action,
+  .channel-action .channel-mark,
+  .button.channel-action-primary {
+    transition: none;
+    transform: none;
+  }
+}
+@media (max-width: 480px) {
+  .hero-actions .button.channel-action-primary {
+    flex: 1 0 100%;
+    max-width: none;
+    min-height: 58px;
+  }
+}

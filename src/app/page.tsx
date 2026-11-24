@@ -1,5 +1,6 @@
 import { Disclosure } from "@/components/Disclosure";
 import { LinkArrow } from "@/components/LinkArrow";
+import { ChannelAction } from "@/components/ChannelAction";
 import Image from "next/image";
 import Link from "next/link";
 import { ContactActions, SectionLabel, SocialLinks } from "@/components/Shared";
@@ -41,17 +42,15 @@ export default function Home() {
             business systems that make everyday work easier.
           </p>
           <div className="hero-actions">
-            <a
-              className="button primary"
+            <ChannelAction
+              channel="whatsapp"
+              primary
               href={site.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Let’s talk on WhatsApp{" "}
-              <span aria-hidden="true">
-                <LinkArrow />
-              </span>
-            </a>
+              Let’s talk on WhatsApp
+            </ChannelAction>
             <a className="under-link" href="#services">
               Explore my services{" "}
               <span aria-hidden="true">
@@ -157,16 +156,14 @@ export default function Home() {
                     ))}
                   </ul>
                   <div>
-                    <a
-                      className="under-link"
+                    <ChannelAction
+                      channel="whatsapp"
                       target="_blank"
                       rel="noopener noreferrer"
                       href={whatsapp(s.message)}
                     >
-                      <span>
-                        Discuss this project <LinkArrow />
-                      </span>
-                    </a>
+                      Discuss this project
+                    </ChannelAction>
                     <Link
                       className="service-page-link"
                       href={`/services/${s.slug}/`}
@@ -458,15 +455,13 @@ export default function Home() {
           </div>
           <div className="contact-bottom">
             <SocialLinks />
-            <a
-              className="under-link"
+            <ChannelAction
+              channel="download"
               href={site.cv}
               download="Lameck_Orengo_CV_updated.pdf"
             >
-              <span>
-                Download CV <LinkArrow direction="down" />
-              </span>
-            </a>
+              Download CV
+            </ChannelAction>
           </div>
         </div>
       </section>
