@@ -89,17 +89,11 @@ export function ProjectSpotlight({
               target="_blank"
               rel="noopener noreferrer"
             >
-              Visit Live Website{" "}
-              <span aria-hidden="true">
-                <LinkArrow />
-              </span>
+              Visit Live Website
             </a>
             {active.caseStudyUrl ? (
               <Link className="under-link" href={active.caseStudyUrl}>
-                View Case Study{" "}
-                <span aria-hidden="true">
-                  <LinkArrow />
-                </span>
+                View Case Study
               </Link>
             ) : null}
           </div>

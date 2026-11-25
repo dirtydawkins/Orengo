@@ -28,7 +28,7 @@ export function CaseStudy({ project }: { project: PortfolioProject }) {
           rel="noopener noreferrer"
         >
           <span>
-            Visit Live Website <LinkArrow />
+            Visit Live Website
           </span>
         </a>
       </section>
